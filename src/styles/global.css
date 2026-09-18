@@ -63,25 +63,10 @@ main {
 
 .pixel-sky {
   display: block;
-  width: min(100%, 1440px);
+  width: min(100%, 1024px);
   height: auto;
-  min-width: 900px;
   margin: 0 auto;
-  transform: translateX(-50%);
-  position: relative;
-  left: 50%;
   image-rendering: pixelated;
-}
-
-.pixel-moon { filter: drop-shadow(0 0 5px rgba(247,237,220,.18)); }
-.pixel-stars { filter: drop-shadow(0 0 3px rgba(247,216,230,.2)); }
-.pixel-branch, .pixel-clouds { shape-rendering: crispEdges; }
-
-.hero,
-section,
-footer {
-  position: relative;
-  z-index: 2;
 }
 
 .hero {
@@ -275,9 +260,10 @@ footer span:last-child { color: var(--rose); }
   .sky-art { height: 390px; }
 
   .pixel-sky {
-    width: 920px;
-    min-width: 920px;
-    left: 43%;
+    width: 768px;
+    min-width: 768px;
+    max-width: none;
+    margin-left: -5%;
   }
 
   .hero {
