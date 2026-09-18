@@ -37,38 +37,71 @@ main {
 
 .site-frame {
   position: absolute;
-  inset: 22px 0;
-  border: 1px solid rgba(231, 184, 204, 0.72);
+  top: 22px;
+  bottom: 22px;
+  left: calc((100% - 100vw) / 2 + 20px);
+  right: calc((100% - 100vw) / 2 + 20px);
+  border: 1px solid rgba(231, 184, 204, 0.82);
   pointer-events: none;
   z-index: 0;
 }
 
 .corner {
   position: absolute;
+  width: 88px;
+  height: 88px;
+  color: var(--rose);
+}
+
+.pixel-flower {
+  position: absolute;
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--rose);
+  image-rendering: pixelated;
+  box-shadow:
+    0 -8px 0 var(--rose),
+    6px -6px 0 var(--rose),
+    8px 0 0 var(--rose),
+    6px 6px 0 var(--rose),
+    0 8px 0 var(--rose),
+    -6px 6px 0 var(--rose),
+    -8px 0 0 var(--rose),
+    -6px -6px 0 var(--rose);
+}
+
+.pixel-flower::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  left: 1px;
+  top: 1px;
+  background: #111114;
+}
+
+.flower-1 { left: 16px; top: 16px; transform: scale(1.25); }
+.flower-2 { left: 48px; top: 4px; transform: scale(0.78); }
+.flower-3 { left: 4px; top: 49px; transform: scale(0.65); }
+
+.petal {
+  position: absolute;
   color: var(--rose);
   font-family: "Silkscreen", monospace;
-  font-size: 2.1rem;
+  font-size: 0.55rem;
+  font-weight: 400;
   line-height: 1;
-  text-shadow: 0 0 0.01px var(--rose);
 }
 
-.corner::after {
-  content: "·  ✦  ·";
-  position: absolute;
-  font-size: 0.62rem;
-  letter-spacing: 0.15rem;
-  white-space: nowrap;
-}
+.petal-1 { left: 70px; top: 34px; transform: rotate(25deg); }
+.petal-2 { left: 35px; top: 67px; transform: rotate(-18deg); }
+.petal-3 { left: 63px; top: 68px; transform: rotate(35deg); }
 
-.top-left { top: -0.8rem; left: -0.7rem; }
-.top-right { top: -0.8rem; right: -0.7rem; }
-.bottom-left { bottom: -0.8rem; left: -0.7rem; }
-.bottom-right { bottom: -0.8rem; right: -0.7rem; }
-
-.top-left::after { top: 1.9rem; left: 0.1rem; }
-.top-right::after { top: 1.9rem; right: 0.1rem; }
-.bottom-left::after { bottom: 1.9rem; left: 0.1rem; }
-.bottom-right::after { bottom: 1.9rem; right: 0.1rem; }
+.top-left { top: -3px; left: -4px; }
+.top-right { top: -3px; right: -4px; transform: scaleX(-1); }
+.bottom-left { bottom: -3px; left: -4px; transform: scaleY(-1); }
+.bottom-right { bottom: -3px; right: -4px; transform: scale(-1); }
 
 .hero,
 section,
@@ -292,12 +325,20 @@ footer span:last-child {
 
 @media (max-width: 700px) {
   .site-frame {
-    inset: 12px 0;
+    top: 12px;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
   }
 
   .corner {
-    font-size: 1.7rem;
+    width: 72px;
+    height: 72px;
   }
+
+  .flower-1 { left: 12px; top: 12px; }
+  .flower-2 { left: 39px; top: 3px; }
+  .flower-3 { left: 3px; top: 39px; }
 
   main {
     width: min(100% - 52px, 1180px);
