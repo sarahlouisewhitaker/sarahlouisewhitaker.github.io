@@ -381,11 +381,21 @@ footer span:last-child {
 }
 
 @media (max-width: 700px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  main {
+    width: calc(100% - 40px);
+    max-width: none;
+    padding: 3.5rem 0 3rem;
+  }
+
   .site-frame {
     top: 12px;
     bottom: 12px;
-    left: 12px;
-    right: 12px;
+    left: 0;
+    right: 0;
   }
 
   .corner {
@@ -393,35 +403,51 @@ footer span:last-child {
     height: 72px;
   }
 
-  .flower-1 { left: 12px; top: 12px; }
-  .flower-2 { left: 39px; top: 3px; }
-  .flower-3 { left: 3px; top: 39px; }
-
-  main {
-    width: min(100% - 52px, 1180px);
-    padding-top: 4rem;
+  .hero {
+    min-height: auto;
+    padding: 4.5rem 0 7rem;
   }
 
-  .hero {
-    min-height: 58vh;
-    padding-bottom: 3rem;
+  .hero-heart {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
   }
 
   h1 {
-    font-size: clamp(2.1rem, 9.7vw, 4rem);
+    max-width: 100%;
+    font-size: clamp(2rem, 10vw, 3.2rem);
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+
+  .floral-divider {
+    width: min(205px, 70vw);
+    margin: 1.5rem auto 1.1rem;
   }
 
   .intro {
-    font-size: 0.56rem;
-    letter-spacing: 0.035em;
+    max-width: 100%;
+    font-size: clamp(0.48rem, 2vw, 0.62rem);
+    letter-spacing: 0.015em;
+    white-space: nowrap;
+  }
+
+  section {
+    padding: 3rem 0;
   }
 
   .section-heading {
-    gap: 0.8rem;
+    width: 100%;
+    gap: 0.65rem;
   }
 
   .section-label {
-    font-size: 0.63rem;
+    font-size: clamp(0.55rem, 2.3vw, 0.68rem);
+    letter-spacing: 0.045em;
+  }
+
+  .section-star {
+    margin-bottom: 1.4rem;
   }
 
   .work-grid {
@@ -430,7 +456,45 @@ footer span:last-child {
   }
 
   .project {
+    width: 100%;
     min-height: 190px;
+    padding: 2.25rem 1.25rem 1.75rem;
+    border-radius: 14px;
+  }
+
+  .project h2 {
+    font-size: clamp(0.68rem, 3vw, 0.85rem);
+    letter-spacing: 0.035em;
+    white-space: nowrap;
+  }
+
+  .project p {
+    max-width: 100%;
+    font-size: clamp(0.54rem, 2.5vw, 0.68rem);
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .project-link {
+    margin-top: 1.15rem;
+  }
+
+  .about-section {
+    padding-top: 4rem;
+  }
+
+  .about-copy {
+    font-size: 0.65rem;
+    line-height: 2;
+  }
+
+  .writing-section {
+    padding-top: 2rem;
+  }
+
+  footer {
+    padding-top: 3rem;
+    font-size: 0.5rem;
   }
 }
 
