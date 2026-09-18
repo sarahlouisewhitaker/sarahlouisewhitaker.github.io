@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 const title = "Sarah Whitaker";
 ---
 
@@ -7,38 +9,59 @@ const title = "Sarah Whitaker";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sarah Whitaker — data, QA, and little things I'm building." />
+    <meta name="description" content="Sarah Whitaker is a statistics graduate working in QA, automation, data, and research." />
     <title>{title}</title>
   </head>
   <body>
     <main>
-      <p class="tiny">♡ hello, i'm sarah ♡</p>
-      <h1>Sarah Whitaker</h1>
-      <p class="intro">data · QA · research · things I’m curious about</p>
-
-      <nav aria-label="Main navigation">
-        <a href="#work">work</a>
-        <a href="#about">about</a>
-        <a href="#writing">writing</a>
-        <a href="https://github.com/sarahlouisewhitaker">github</a>
-      </nav>
+      <header class="hero">
+        <div class="eyebrow"><span>♡</span><span>hello, i'm sarah</span><span>♡</span></div>
+        <h1>Sarah<br /><em>Whitaker</em></h1>
+        <p class="intro">statistics · QA · data · research</p>
+        <p class="hero-note">a little corner of the internet for things i'm working on, learning, and curious about.</p>
+        <nav aria-label="Main navigation">
+          <a href="#work"><span>01</span> work</a>
+          <a href="#about"><span>02</span> about</a>
+          <a href="#writing"><span>03</span> writing</a>
+          <a href="https://github.com/sarahlouisewhitaker">github ↗</a>
+        </nav>
+      </header>
 
       <section id="work">
-        <p class="section-label">01 / work</p>
-        <p>Projects and experiments are coming soon.</p>
+        <div class="section-heading"><p class="section-label">01 / selected work</p><span class="ornament">✦</span></div>
+        <div class="work-grid">
+          <a class="project" href="#work">
+            <span class="project-number">01</span>
+            <h2>Data &amp; statistics</h2>
+            <p>Bayesian modeling, regression, data cleaning, and research projects from my time at BYU.</p>
+            <span class="project-link">explore <b>→</b></span>
+          </a>
+          <a class="project" href="#work">
+            <span class="project-number">02</span>
+            <h2>QA &amp; automation</h2>
+            <p>UI testing, test automation, payment integrations, and the behind-the-scenes work of making software behave.</p>
+            <span class="project-link">explore <b>→</b></span>
+          </a>
+        </div>
       </section>
 
       <section id="about">
-        <p class="section-label">02 / about</p>
-        <p>I’m a statistics graduate interested in data, quality, automation, and thoughtful little systems.</p>
+        <div class="section-heading"><p class="section-label">02 / about</p><span class="ornament">♡</span></div>
+        <div class="about-layout">
+          <p class="about-lead">I'm a statistics graduate who likes figuring out how things work, then making them work a little better.</p>
+          <div class="about-copy">
+            <p>My background sits somewhere between data and software. I studied statistics with an emphasis in data science at BYU and now work in QA, where I build automations, test user interfaces, and help troubleshoot technical problems.</p>
+            <p>Outside of work, I like data projects, tiny experiments, pretty websites, and learning something just because it seems interesting.</p>
+          </div>
+        </div>
       </section>
 
       <section id="writing">
-        <p class="section-label">03 / writing</p>
-        <p>Notes, projects, and things I learn along the way.</p>
+        <div class="section-heading"><p class="section-label">03 / writing</p><span class="ornament">❀</span></div>
+        <div class="writing-row"><p>notes, projects, and things i learn along the way.</p><span class="coming-soon">coming soon</span></div>
       </section>
 
-      <footer>♡ made with curiosity ♡</footer>
+      <footer><span>♡</span><span>made with curiosity</span><span>♡</span></footer>
     </main>
   </body>
 </html>
