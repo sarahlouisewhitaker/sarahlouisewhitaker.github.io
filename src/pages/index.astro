@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 
-const title = "Sarah Whitaker";
+const title = "sarahwhitaker";
 ---
 
 <!doctype html>
@@ -15,53 +15,65 @@ const title = "Sarah Whitaker";
   <body>
     <main>
       <header class="hero">
-        <div class="eyebrow"><span>♡</span><span>hello, i'm sarah</span><span>♡</span></div>
-        <h1>Sarah<br /><em>Whitaker</em></h1>
-        <p class="intro">statistics · QA · data · research</p>
-        <p class="hero-note">a little corner of the internet for things i'm working on, learning, and curious about.</p>
-        <nav aria-label="Main navigation">
-          <a href="#work"><span>01</span> work</a>
-          <a href="#about"><span>02</span> about</a>
-          <a href="#writing"><span>03</span> writing</a>
-          <a href="https://github.com/sarahlouisewhitaker">github ↗</a>
-        </nav>
+        <div class="hero-heart">♡</div>
+        <h1>sarahwhitaker</h1>
+        <div class="floral-divider" aria-hidden="true"><span></span><b>✿</b><span></span></div>
+        <p class="intro">STATISTICS&nbsp;&nbsp;·&nbsp;&nbsp; QA&nbsp;&nbsp; ·&nbsp;&nbsp; DATA&nbsp;&nbsp; ·&nbsp;&nbsp; RESEARCH</p>
       </header>
 
       <section id="work">
-        <div class="section-heading"><p class="section-label">01 / selected work</p><span class="ornament">✦</span></div>
+        <div class="section-heading">
+          <span></span>
+          <p class="section-label">FEATURED WORK</p>
+          <span></span>
+        </div>
+        <div class="section-star" aria-hidden="true">✦</div>
+
         <div class="work-grid">
-          <a class="project" href="#work">
-            <span class="project-number">01</span>
-            <h2>Data &amp; statistics</h2>
-            <p>Bayesian modeling, regression, data cleaning, and research projects from my time at BYU.</p>
-            <span class="project-link">explore <b>→</b></span>
+          <a class="project" href="#about">
+            <span class="project-ornament">✦</span>
+            <h2>DATA &amp; STATISTICS</h2>
+            <p>analysis&nbsp;&nbsp; · &nbsp;&nbsp;research&nbsp;&nbsp; · &nbsp;&nbsp;modeling</p>
+            <span class="project-link">→</span>
           </a>
-          <a class="project" href="#work">
-            <span class="project-number">02</span>
-            <h2>QA &amp; automation</h2>
-            <p>UI testing, test automation, payment integrations, and the behind-the-scenes work of making software behave.</p>
-            <span class="project-link">explore <b>→</b></span>
+          <a class="project" href="#writing">
+            <span class="project-ornament">♡</span>
+            <h2>QA &amp; AUTOMATION</h2>
+            <p>testing&nbsp;&nbsp; · &nbsp;&nbsp;automation&nbsp;&nbsp; · &nbsp;&nbsp;payments</p>
+            <span class="project-link">→</span>
           </a>
         </div>
       </section>
 
-      <section id="about">
-        <div class="section-heading"><p class="section-label">02 / about</p><span class="ornament">♡</span></div>
-        <div class="about-layout">
-          <p class="about-lead">I'm a statistics graduate who likes figuring out how things work, then making them work a little better.</p>
-          <div class="about-copy">
-            <p>My background sits somewhere between data and software. I studied statistics with an emphasis in data science at BYU and now work in QA, where I build automations, test user interfaces, and help troubleshoot technical problems.</p>
-            <p>Outside of work, I like data projects, tiny experiments, pretty websites, and learning something just because it seems interesting.</p>
-          </div>
+      <section id="about" class="about-section">
+        <div class="section-heading">
+          <span></span>
+          <p class="section-label">A LITTLE ABOUT ME</p>
+          <span></span>
         </div>
+        <div class="about-copy">
+          <p>I'm a statistics graduate interested in</p>
+          <p>data, quality, automation, and</p>
+          <p>building thoughtful things.</p>
+        </div>
+        <div class="section-star bottom-star" aria-hidden="true">✦</div>
       </section>
 
-      <section id="writing">
-        <div class="section-heading"><p class="section-label">03 / writing</p><span class="ornament">❀</span></div>
-        <div class="writing-row"><p>notes, projects, and things i learn along the way.</p><span class="coming-soon">coming soon</span></div>
+      <section id="writing" class="writing-section">
+        <div class="section-heading">
+          <span></span>
+          <p class="section-label">WRITING</p>
+          <span></span>
+        </div>
+        <p class="writing-copy">notes, projects, and things i learn along the way.</p>
+        <span class="coming-soon">COMING SOON</span>
       </section>
 
-      <footer><span>♡</span><span>made with curiosity</span><span>♡</span></footer>
+      <footer>
+        <span>♡</span>
+        <span>made with curiosity</span>
+        <span>♡</span>
+      </footer>
     </main>
   </body>
 </html>
