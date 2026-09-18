@@ -48,55 +48,112 @@ main {
 
 .corner {
   position: absolute;
-  width: 88px;
-  height: 88px;
+  width: 92px;
+  height: 92px;
   color: var(--rose);
 }
 
-.pixel-flower {
-  position: absolute;
-  display: block;
-  width: 6px;
-  height: 6px;
-  background: var(--rose);
-  image-rendering: pixelated;
-  box-shadow:
-    0 -8px 0 var(--rose),
-    6px -6px 0 var(--rose),
-    8px 0 0 var(--rose),
-    6px 6px 0 var(--rose),
-    0 8px 0 var(--rose),
-    -6px 6px 0 var(--rose),
-    -8px 0 0 var(--rose),
-    -6px -6px 0 var(--rose);
-}
-
-.pixel-flower::after {
+.corner::before,
+.corner::after {
   content: "";
   position: absolute;
-  width: 4px;
-  height: 4px;
-  left: 1px;
-  top: 1px;
-  background: #111114;
+  background: var(--rose);
+  opacity: 0.72;
 }
 
-.flower-1 { left: 16px; top: 16px; transform: scale(1.25); }
-.flower-2 { left: 48px; top: 4px; transform: scale(0.78); }
-.flower-3 { left: 4px; top: 49px; transform: scale(0.65); }
+.corner::before {
+  width: 68px;
+  height: 1px;
+  left: 0;
+  top: 14px;
+  box-shadow: 12px 5px 0 -0.25px var(--rose), 35px 8px 0 -0.25px var(--rose);
+}
 
-.petal {
+.corner::after {
+  width: 1px;
+  height: 68px;
+  left: 14px;
+  top: 0;
+  box-shadow: 5px 12px 0 -0.25px var(--rose), 8px 35px 0 -0.25px var(--rose);
+}
+
+.blossom {
   position: absolute;
-  color: var(--rose);
-  font-family: "Silkscreen", monospace;
-  font-size: 0.55rem;
-  font-weight: 400;
-  line-height: 1;
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: var(--rose);
+  image-rendering: pixelated;
 }
 
-.petal-1 { left: 70px; top: 34px; transform: rotate(25deg); }
-.petal-2 { left: 35px; top: 67px; transform: rotate(-18deg); }
-.petal-3 { left: 63px; top: 68px; transform: rotate(35deg); }
+.blossom::before,
+.blossom::after {
+  content: "";
+  position: absolute;
+  background: var(--rose);
+}
+
+.blossom::before {
+  width: 5px;
+  height: 5px;
+  left: -5px;
+  top: 0;
+  box-shadow: 10px 0 0 var(--rose);
+}
+
+.blossom::after {
+  width: 5px;
+  height: 5px;
+  left: 0;
+  top: -5px;
+  box-shadow: 0 10px 0 var(--rose);
+}
+
+.blossom-1 {
+  left: 18px;
+  top: 10px;
+  transform: scale(1.15);
+}
+
+.blossom-2 {
+  left: 48px;
+  top: 4px;
+  transform: scale(0.78);
+}
+
+.blossom-3 {
+  left: 5px;
+  top: 46px;
+  transform: scale(0.68);
+}
+
+.blossom-1::before,
+.blossom-1::after,
+.blossom-2::before,
+.blossom-2::after,
+.blossom-3::before,
+.blossom-3::after {
+  border-radius: 1px;
+}
+
+.bud {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--rose);
+  opacity: 0.8;
+  image-rendering: pixelated;
+}
+
+.bud-1 {
+  left: 67px;
+  top: 22px;
+}
+
+.bud-2 {
+  left: 32px;
+  top: 64px;
+}
 
 .top-left { top: -3px; left: -4px; }
 .top-right { top: -3px; right: -4px; transform: scaleX(-1); }
