@@ -55,15 +55,16 @@ main {
 .sky-art {
   position: absolute;
   inset: 0 0 auto;
-  height: 470px;
-  overflow: hidden;
+  width: 100%;
+  height: auto;
+  overflow: visible;
   pointer-events: none;
   z-index: 1;
 }
 
 .pixel-sky {
   display: block;
-  width: min(100%, 1024px);
+  width: min(100%, 1440px);
   height: auto;
   margin: 0 auto;
   image-rendering: pixelated;
@@ -257,13 +258,12 @@ footer span:last-child { color: var(--rose); }
     padding-bottom: 3rem;
   }
 
-  .sky-art { height: 390px; }
+  .sky-art { height: auto; }
 
   .pixel-sky {
-    width: 768px;
-    min-width: 768px;
-    max-width: none;
-    margin-left: -5%;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
   }
 
   .hero {
