@@ -56,147 +56,30 @@ main {
   position: absolute;
   inset: 0 0 auto;
   height: 470px;
+  overflow: hidden;
   pointer-events: none;
   z-index: 1;
 }
 
-.moon {
-  position: absolute;
-  top: 72px;
-  left: 50%;
-  width: 76px;
-  height: 76px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: #f5e9dc;
-  box-shadow:
-    0 0 18px rgba(245, 233, 220, .22),
-    0 0 48px rgba(214, 192, 220, .08);
-}
-
-.moon::after {
-  content: "";
-  position: absolute;
-  width: 76px;
-  height: 76px;
-  top: -5px;
-  left: 17px;
-  border-radius: 50%;
-  background: var(--sky-top);
-}
-
-.stars .star {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #f5dce8;
-  border-radius: 50%;
-  box-shadow: 0 0 7px rgba(245,220,232,.3);
-}
-
-.star::after {
-  content: "";
-  position: absolute;
-  left: 1px;
-  top: -3px;
-  width: 2px;
-  height: 10px;
-  background: inherit;
-  opacity: .8;
-}
-
-.star::before {
-  content: "";
-  position: absolute;
-  left: -3px;
-  top: 1px;
-  width: 10px;
-  height: 2px;
-  background: inherit;
-  opacity: .8;
-}
-
-.star-1 { top: 58px; left: 18%; transform: scale(.55); }
-.star-2 { top: 126px; left: 27%; transform: scale(.8); }
-.star-3 { top: 94px; right: 22%; transform: scale(.55); }
-.star-4 { top: 174px; right: 14%; transform: scale(.7); }
-.star-5 { top: 208px; left: 13%; transform: scale(.45); }
-.star-6 { top: 242px; right: 29%; transform: scale(.55); }
-.star-7 { top: 288px; left: 22%; transform: scale(.35); }
-.star-8 { top: 270px; right: 17%; transform: scale(.4); }
-
-.branch {
-  position: absolute;
-  top: 10px;
-  left: -20px;
-  width: 390px;
-  height: 260px;
-  transform: rotate(-7deg);
-  transform-origin: left top;
-}
-
-.branch::before {
-  content: "";
-  position: absolute;
-  width: 355px;
-  height: 10px;
-  top: 175px;
-  left: -10px;
-  border-top: 4px solid #302536;
-  border-radius: 50%;
-  transform: rotate(-12deg);
-}
-
-.twig {
-  position: absolute;
+.pixel-sky {
   display: block;
-  height: 3px;
-  background: #302536;
-  transform-origin: left center;
-  border-radius: 4px;
+  width: min(100%, 1440px);
+  height: auto;
+  min-width: 900px;
+  margin: 0 auto;
+  transform: translateX(-50%);
+  position: relative;
+  left: 50%;
+  image-rendering: pixelated;
 }
 
-.twig-1 { width: 155px; left: 38px; top: 157px; transform: rotate(-30deg); }
-.twig-2 { width: 112px; left: 118px; top: 120px; transform: rotate(-48deg); }
-.twig-3 { width: 104px; left: 185px; top: 86px; transform: rotate(-28deg); }
-.twig-4 { width: 78px; left: 252px; top: 61px; transform: rotate(-52deg); }
-
-.blossom {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: var(--rose);
-  border-radius: 50% 45% 50% 45%;
-  box-shadow:
-    -10px 0 0 var(--rose),
-    10px 0 0 var(--rose),
-    0 -10px 0 var(--rose),
-    0 10px 0 var(--rose);
-  transform: rotate(45deg);
+.pixel-moon {
+  filter: drop-shadow(0 0 4px rgba(247, 237, 220, .16));
 }
 
-.blossom::after {
-  content: "";
-  position: absolute;
-  inset: 5px;
-  border-radius: 50%;
-  background: #6e405c;
+.pixel-stars {
+  filter: drop-shadow(0 0 3px rgba(247, 216, 230, .22));
 }
-
-.blossom-a { left: 22px; top: 127px; transform: rotate(45deg) scale(1.05); }
-.blossom-b { left: 108px; top: 82px; transform: rotate(25deg) scale(.72); }
-.blossom-c { left: 205px; top: 53px; transform: rotate(60deg) scale(.9); }
-.blossom-d { left: 286px; top: 25px; transform: rotate(20deg) scale(.65); }
-
-.bud {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: var(--rose);
-  border-radius: 50%;
-}
-.bud-a { left: 170px; top: 104px; }
-.bud-b { left: 326px; top: 7px; }
 
 .hero,
 section,
@@ -395,30 +278,11 @@ footer span:last-child { color: var(--rose); }
 
   .sky-art { height: 390px; }
 
-  .moon {
-    top: 55px;
-    width: 58px;
-    height: 58px;
+  .pixel-sky {
+    width: 920px;
+    min-width: 920px;
+    left: 43%;
   }
-
-  .moon::after {
-    width: 58px;
-    height: 58px;
-    left: 13px;
-    top: -4px;
-  }
-
-  .branch {
-    top: 8px;
-    left: -95px;
-    transform: rotate(-7deg) scale(.72);
-    transform-origin: left top;
-  }
-
-  .star-1 { top: 60px; left: 10%; }
-  .star-2 { top: 145px; left: 21%; }
-  .star-3 { top: 100px; right: 13%; }
-  .star-4 { top: 190px; right: 7%; }
 
   .hero {
     min-height: 450px;
