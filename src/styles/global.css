@@ -19,18 +19,10 @@
   image-rendering: pixelated;
 }
 
-.pixel-moon {
-  filter: drop-shadow(0 0 5px rgba(247, 237, 220, .18));
-}
+.pixel-moon { filter: drop-shadow(0 0 5px rgba(247,237,220,.18)); }
+.pixel-stars { filter: drop-shadow(0 0 3px rgba(247,216,230,.2)); }
+.pixel-branch, .pixel-clouds { shape-rendering: crispEdges; }
 
-.pixel-stars {
-  filter: drop-shadow(0 0 3px rgba(247, 216, 230, .2));
-}
-
-.pixel-branch,
-.pixel-clouds {
-  shape-rendering: crispEdges;
-}
 .hero,
 section,
 footer {
