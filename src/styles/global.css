@@ -67,6 +67,7 @@ main {
   width: min(100%, 1440px);
   height: auto;
   margin: 0 auto;
+  opacity: .68;
   image-rendering: pixelated;
 }
 
