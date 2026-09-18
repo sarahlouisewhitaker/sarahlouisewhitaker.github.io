@@ -1,3 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Silkscreen:wght@400;700&display=swap");
+
+:root {
+  font-family: "DM Mono", monospace;
+  color: #f2edf1;
+  background: #090b18;
+  font-synthesis: none;
+  --ink: #f2edf1;
+  --muted: #c1bac6;
+  --rose: #efb4ca;
+  --rose-soft: #d89dbd;
+  --sky-top: #080a18;
+  --sky-mid: #11152b;
+  --sky-bottom: #252747;
+  --panel: rgba(11, 14, 29, 0.42);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--sky-top);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(129, 116, 181, 0.13), transparent 34rem),
+    linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 42%, var(--sky-bottom) 100%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 22%, rgba(255,255,255,.035) 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 31%, rgba(255,255,255,.03) 0 1px, transparent 2px);
+  background-size: 180px 180px, 230px 230px;
+  opacity: .55;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+  width: min(1060px, calc(100% - 80px));
+  margin: 0 auto;
+  padding: 2rem 0 5rem;
+  text-align: center;
+}
+
 .sky-art {
   position: absolute;
   inset: 0 0 auto;
