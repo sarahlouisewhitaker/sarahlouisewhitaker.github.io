@@ -29,9 +29,9 @@ body {
 
 main {
   position: relative;
-  width: min(1180px, calc(100% - 100px));
+  width: min(1420px, calc(100% - 120px));
   margin: 0 auto;
-  padding: 5.5rem 0 5rem;
+  padding: 3.5rem 0 4rem;
   text-align: center;
 }
 
@@ -48,117 +48,45 @@ main {
 
 .corner {
   position: absolute;
-  width: 92px;
-  height: 92px;
-  color: var(--rose);
+  width: 118px;
+  height: 118px;
+  overflow: visible;
 }
 
-.corner::before,
-.corner::after {
-  content: "";
+.corner-art {
   position: absolute;
-  background: var(--rose);
-  opacity: 0.72;
-}
-
-.corner::before {
-  width: 68px;
-  height: 1px;
-  left: 0;
-  top: 14px;
-  box-shadow: 12px 5px 0 -0.25px var(--rose), 35px 8px 0 -0.25px var(--rose);
-}
-
-.corner::after {
-  width: 1px;
-  height: 68px;
-  left: 14px;
+  width: 118px;
+  height: 118px;
   top: 0;
-  box-shadow: 5px 12px 0 -0.25px var(--rose), 8px 35px 0 -0.25px var(--rose);
-}
-
-.blossom {
-  position: absolute;
-  display: block;
-  width: 5px;
-  height: 5px;
-  background: var(--rose);
-  image-rendering: pixelated;
-}
-
-.blossom::before,
-.blossom::after {
-  content: "";
-  position: absolute;
-  background: var(--rose);
-}
-
-.blossom::before {
-  width: 5px;
-  height: 5px;
-  left: -5px;
-  top: 0;
-  box-shadow: 10px 0 0 var(--rose);
-}
-
-.blossom::after {
-  width: 5px;
-  height: 5px;
   left: 0;
-  top: -5px;
-  box-shadow: 0 10px 0 var(--rose);
+  overflow: visible;
+  shape-rendering: crispEdges;
 }
 
-.blossom-1 {
-  left: 18px;
-  top: 10px;
-  transform: scale(1.15);
+.corner-art .branch {
+  fill: none;
+  stroke: var(--rose);
+  stroke-width: 1.6;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  opacity: 0.95;
 }
 
-.blossom-2 {
-  left: 48px;
-  top: 4px;
-  transform: scale(0.78);
+.corner-art .blossom-svg,
+.corner-art .small-flower,
+.corner-art .bud-svg,
+.corner-art .sparkles {
+  fill: var(--rose);
 }
 
-.blossom-3 {
-  left: 5px;
-  top: 46px;
-  transform: scale(0.68);
+.corner-art .center {
+  fill: var(--paper);
 }
 
-.blossom-1::before,
-.blossom-1::after,
-.blossom-2::before,
-.blossom-2::after,
-.blossom-3::before,
-.blossom-3::after {
-  border-radius: 1px;
-}
-
-.bud {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: var(--rose);
-  opacity: 0.8;
-  image-rendering: pixelated;
-}
-
-.bud-1 {
-  left: 67px;
-  top: 22px;
-}
-
-.bud-2 {
-  left: 32px;
-  top: 64px;
-}
-
-.top-left { top: -3px; left: -4px; }
-.top-right { top: -3px; right: -4px; transform: scaleX(-1); }
-.bottom-left { bottom: -3px; left: -4px; transform: scaleY(-1); }
-.bottom-right { bottom: -3px; right: -4px; transform: scale(-1); }
+.top-left { top: -4px; left: -4px; }
+.top-right { top: -4px; right: -4px; transform: scaleX(-1); transform-origin: center; }
+.bottom-left { bottom: -4px; left: -4px; transform: scaleY(-1); transform-origin: center; }
+.bottom-right { bottom: -4px; right: -4px; transform: scale(-1); transform-origin: center; }
 
 .hero,
 section,
@@ -169,12 +97,12 @@ footer {
 
 
 .hero {
-  min-height: 54vh;
+  min-height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem 0 5rem;
+  padding: 2.5rem 0 3.5rem;
 }
 
 .hero-heart {
@@ -197,7 +125,7 @@ h2,
 h1 {
   margin: 0;
   color: var(--ink);
-  font-size: clamp(2.7rem, 6vw, 5.7rem);
+  font-size: clamp(2.7rem, 4.1vw, 3.85rem);
   line-height: 1.15;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -208,8 +136,8 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
-  width: min(230px, 55vw);
-  margin: 1.7rem auto 1.3rem;
+  width: min(205px, 48vw);
+  margin: 1.45rem auto 1.1rem;
   color: var(--rose);
 }
 
@@ -229,12 +157,12 @@ h1 {
 .intro {
   margin: 0;
   color: var(--ink);
-  font-size: clamp(0.62rem, 1.15vw, 0.8rem);
+  font-size: clamp(0.62rem, 0.9vw, 0.72rem);
   letter-spacing: 0.08em;
 }
 
 section {
-  padding: 4.5rem 0;
+  padding: 3.8rem 0;
 }
 
 .section-heading {
@@ -255,7 +183,7 @@ section {
 .section-label {
   margin: 0;
   color: var(--ink);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   letter-spacing: 0.08em;
   white-space: nowrap;
 }
@@ -277,16 +205,16 @@ section {
 
 .project {
   position: relative;
-  min-height: 210px;
+  min-height: 164px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2.5rem 2rem 2rem;
+  padding: 2rem 2rem 1.6rem;
   color: inherit;
   background: rgba(21, 21, 25, 0.72);
   border: 1px solid rgba(238, 233, 236, 0.75);
-  border-radius: 17px;
+  border-radius: 12px;
   text-decoration: none;
   transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
@@ -308,14 +236,14 @@ section {
 .project h2 {
   margin: 0 0 1rem;
   color: var(--ink);
-  font-size: clamp(0.78rem, 1.35vw, 1rem);
+  font-size: clamp(0.72rem, 0.95vw, 0.86rem);
   letter-spacing: 0.06em;
 }
 
 .project p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   line-height: 1.8;
   letter-spacing: 0.02em;
 }
@@ -333,7 +261,7 @@ section {
 .about-copy {
   margin: 1.7rem auto 0;
   color: var(--ink);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   line-height: 2.15;
   letter-spacing: 0.02em;
 }
