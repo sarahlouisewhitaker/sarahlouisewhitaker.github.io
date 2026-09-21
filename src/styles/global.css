@@ -351,3 +351,165 @@ section { padding: 1.75rem 0; }
   .background-motion-toggle { display: none; }
   .project { transition: none; }
 }
+
+
+/* Project case-study pages */
+.project-page main {
+  width: min(900px, calc(100% - 64px));
+  padding-bottom: 3rem;
+}
+
+.project-hero {
+  padding: 4rem 0 2.25rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 3rem;
+  color: var(--muted);
+  font-family: "Silkscreen", monospace;
+  font-size: .56rem;
+  text-decoration: none;
+  transition: color 180ms ease, text-shadow 180ms ease;
+}
+
+.back-link:hover {
+  color: var(--rose);
+  text-shadow: 0 0 12px rgba(239,180,202,.35);
+}
+
+.project-kicker {
+  margin: 0 0 .9rem;
+  color: var(--rose);
+  font-family: "Silkscreen", monospace;
+  font-size: .58rem;
+  letter-spacing: .12em;
+}
+
+.project-hero h1 {
+  font-size: clamp(1.65rem, 4vw, 2.8rem);
+}
+
+.project-subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Silkscreen", monospace;
+  font-size: .55rem;
+  letter-spacing: .04em;
+}
+
+.case-study {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.case-section {
+  margin-top: 2.75rem;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid rgba(239,180,202,.28);
+}
+
+.case-section > p:not(.section-label) {
+  margin: 1rem 0 0;
+  color: var(--ink);
+  font-size: .78rem;
+  line-height: 2;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .8rem;
+  margin-top: 1rem;
+}
+
+.case-card {
+  min-height: 165px;
+  padding: 1.2rem;
+  background: rgba(11,14,29,.42);
+  border: 1px solid rgba(239,180,202,.3);
+  border-radius: 10px;
+}
+
+.case-number {
+  color: var(--rose);
+  font-family: "Silkscreen", monospace;
+  font-size: .52rem;
+}
+
+.case-card h2 {
+  margin: .8rem 0 .55rem;
+  color: var(--ink);
+  font-family: "Silkscreen", monospace;
+  font-size: .68rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.case-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .65rem;
+  line-height: 1.75;
+}
+
+.process {
+  display: grid;
+  gap: .65rem;
+  margin-top: 1rem;
+}
+
+.process div {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  align-items: center;
+  min-height: 48px;
+  padding: .65rem .8rem;
+  background: rgba(11,14,29,.3);
+  border-left: 1px solid rgba(239,180,202,.55);
+}
+
+.process span {
+  color: var(--rose);
+  font-family: "Silkscreen", monospace;
+  font-size: .5rem;
+}
+
+.process p {
+  margin: 0;
+  color: var(--ink);
+  font-size: .65rem;
+  line-height: 1.5;
+}
+
+.closing-section {
+  padding-bottom: 1rem;
+}
+
+.project-page footer {
+  margin-top: 2rem;
+}
+
+@media (max-width: 700px) {
+  .project-page main {
+    width: calc(100% - 36px);
+  }
+
+  .project-hero {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .back-link {
+    margin-bottom: 2.25rem;
+  }
+
+  .case-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-section > p:not(.section-label) {
+    font-size: .68rem;
+    line-height: 1.85;
+  }
+}
