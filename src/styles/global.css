@@ -538,3 +538,17 @@ section { padding: 1.75rem 0; }
     text-shadow: 0 2px 8px rgba(0,0,0,.78);
   }
 }
+
+
+.inline-project-link {
+  color: var(--rose);
+  text-decoration: underline;
+  text-decoration-color: rgba(239,180,202,.55);
+  text-underline-offset: 3px;
+  transition: color 180ms ease, text-shadow 180ms ease;
+}
+
+.inline-project-link:hover {
+  color: #ffd7e6;
+  text-shadow: 0 0 12px rgba(239,180,202,.45);
+}
