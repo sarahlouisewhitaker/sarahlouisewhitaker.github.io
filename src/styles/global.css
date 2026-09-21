@@ -56,14 +56,16 @@ main {
 }
 
 .sky-art {
-  position: absolute;
-  inset: 0 0 auto;
+  /* Keep the artwork attached to the viewport so it remains behind the
+     entire page while scrolling, instead of ending after the hero. */
+  position: fixed;
+  inset: 0;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
-  mask-image: linear-gradient(to bottom, black 94%, transparent);
 }
 
 .pixel-sky,
@@ -73,7 +75,7 @@ main {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   image-rendering: pixelated;
 }
 
@@ -291,16 +293,16 @@ footer span:last-child { color: var(--rose); }
 @media (max-width: 700px) {
   main {
     width: calc(100% - 36px);
-    padding-top: 56.25vw;
+    padding-top: 2rem;
     padding-bottom: 3rem;
   }
 
   #work { width: 100%; padding-top: 1.5rem; }
 
   .background-motion-toggle {
-    position: absolute;
-    top: calc(56.25vw + .45rem);
-    right: 1rem;
+    position: fixed;
+    top: .75rem;
+    right: .75rem;
     padding: .4rem .6rem;
     font-size: .6rem;
   }
