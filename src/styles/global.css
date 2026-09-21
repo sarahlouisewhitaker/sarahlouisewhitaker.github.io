@@ -53,6 +53,7 @@ main {
   margin: 0 auto;
   padding: 0 0 2.5rem;
   text-align: center;
+  text-shadow: 0 2px 10px rgba(0,0,0,.72);
 }
 
 .sky-art {
@@ -204,7 +205,9 @@ section { padding: 1.75rem 0; }
   padding: 1rem 3.25rem;
   text-align: center;
   color: var(--ink);
-  background: var(--panel);
+  background: rgba(8, 10, 22, .58);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   border: 1px solid rgba(239,180,202,.45);
   border-radius: 10px;
   text-decoration: none;
@@ -427,7 +430,9 @@ section { padding: 1.75rem 0; }
 .case-card {
   min-height: 165px;
   padding: 1.2rem;
-  background: rgba(11,14,29,.42);
+  background: rgba(8,10,22,.58);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   border: 1px solid rgba(239,180,202,.3);
   border-radius: 10px;
 }
@@ -511,5 +516,25 @@ section { padding: 1.75rem 0; }
   .case-section > p:not(.section-label) {
     font-size: .68rem;
     line-height: 1.85;
+  }
+}
+
+
+/* Keep the pixel art visible while giving text a little more breathing room. */
+.hero,
+#work,
+.project-hero,
+.case-study,
+.project-page footer {
+  text-shadow: 0 2px 10px rgba(0,0,0,.72);
+}
+
+@media (max-width: 700px) {
+  .hero,
+  #work,
+  .project-hero,
+  .case-study,
+  .project-page footer {
+    text-shadow: 0 2px 8px rgba(0,0,0,.78);
   }
 }
