@@ -199,10 +199,10 @@ section { padding: 1.75rem 0; }
   min-height: 92px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding: 1rem 3.25rem 1rem 1.25rem;
-  text-align: left;
+  padding: 1rem 3.25rem;
+  text-align: center;
   color: var(--ink);
   background: var(--panel);
   border: 1px solid rgba(239,180,202,.45);
