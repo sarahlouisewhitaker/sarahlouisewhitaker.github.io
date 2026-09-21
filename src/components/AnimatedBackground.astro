@@ -1,0 +1,98 @@
+---
+// Assets live in public/art/; this user-site repository has no base path.
+const poster = "/art/knight-background.png";
+---
+
+<div class="sky-art" aria-hidden="true">
+  <img class="pixel-sky" src={poster} alt="" width="1672" height="941" fetchpriority="high" />
+  <video
+    id="knight-background-video"
+    class="pixel-sky-video"
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster={poster}
+    tabindex="-1"
+  >
+    <source data-src="/art/knight-loop.webm" type="video/webm" />
+    <source data-src="/art/knight-loop.mp4" type="video/mp4" />
+  </video>
+</div>
+<button
+  id="background-motion-toggle"
+  class="background-motion-toggle"
+  type="button"
+  aria-controls="knight-background-video"
+  hidden
+>Pause animation</button>
+
+<script>
+  const video = document.querySelector<HTMLVideoElement>("#knight-background-video");
+  const toggle = document.querySelector<HTMLButtonElement>("#background-motion-toggle");
+
+  if (video && toggle) {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let sourcesAttached = false;
+    let motionEnabled = !preference.matches;
+
+    function syncButton() {
+      if (!video || !toggle) return;
+      toggle.textContent = video.paused ? "Play animation" : "Pause animation";
+    }
+
+    async function updatePlayback() {
+      if (!video || !toggle) return;
+      if (preference.matches) {
+        video.pause();
+        video.classList.remove("is-ready");
+        toggle.hidden = true;
+        return;
+      }
+
+      if (!motionEnabled || document.hidden) {
+        video.pause();
+        return;
+      }
+
+      if (!sourcesAttached) {
+        video.querySelectorAll<HTMLSourceElement>("source[data-src]").forEach((source) => {
+          if (source.dataset.src) source.src = source.dataset.src;
+        });
+        sourcesAttached = true;
+        video.load();
+      }
+
+      toggle.hidden = false;
+      try {
+        await video.play();
+      } catch {
+        syncButton();
+      }
+    }
+
+    video.addEventListener("playing", () => {
+      if (preference.matches || !motionEnabled || document.hidden) {
+        video.pause();
+        return;
+      }
+      video.classList.add("is-ready");
+      syncButton();
+    });
+    video.addEventListener("pause", syncButton);
+    video.addEventListener("error", () => {
+      video.classList.remove("is-ready");
+      toggle.hidden = true;
+    });
+    toggle.addEventListener("click", () => {
+      motionEnabled = video.paused;
+      void updatePlayback();
+    });
+    preference.addEventListener("change", () => {
+      motionEnabled = !preference.matches;
+      void updatePlayback();
+    });
+    document.addEventListener("visibilitychange", () => void updatePlayback());
+    void updatePlayback();
+  }
+</script>
