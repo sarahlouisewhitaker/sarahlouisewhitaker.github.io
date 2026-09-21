@@ -56,8 +56,6 @@ main {
 }
 
 .sky-art {
-  /* Keep the artwork attached to the viewport so it remains behind the
-     entire page while scrolling, instead of ending after the hero. */
   position: fixed;
   inset: 0;
   width: 100%;
@@ -115,7 +113,6 @@ main {
   margin-inline: auto;
   padding-top: 2vw;
 }
-#work .project { padding-inline: 1rem; }
 
 .hero-heart {
   margin-bottom: 1.1rem;
@@ -125,10 +122,9 @@ main {
 }
 
 h1,
-h2,
 .section-label,
 .intro,
-.project-link,
+.work-link,
 .coming-soon {
   font-family: "Silkscreen", monospace;
   font-weight: 400;
@@ -198,63 +194,54 @@ section { padding: 4rem 0; }
   white-space: nowrap;
 }
 
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-.project {
-  position: relative;
-  min-height: 190px;
+.featured-work {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: .55rem;
+}
+
+.work-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  padding: 2.2rem;
-  color: inherit;
-  background: var(--panel);
-  border: 1px solid rgba(239,180,202,.5);
-  border-radius: 14px;
-  text-decoration: none;
-  backdrop-filter: blur(3px);
-  box-shadow: 0 0 0 rgba(239,180,202,0);
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 220ms ease;
-}
-
-.project:hover {
-  transform: translateY(-3px);
-  border-color: var(--rose);
-  background: rgba(20, 22, 43, .58);
-  box-shadow:
-    0 0 14px rgba(239,180,202,.22),
-    0 0 32px rgba(239,180,202,.12),
-    inset 0 0 18px rgba(239,180,202,.035);
-}
-
-.project-ornament {
-  position: absolute;
-  top: 1.2rem;
-  color: var(--rose);
-  font-family: "Silkscreen", monospace;
-}
-
-.project h2 {
-  margin: 0 0 .9rem;
-  font-size: clamp(.72rem, 1.2vw, .92rem);
-  letter-spacing: .055em;
-}
-
-.project p {
-  margin: 0;
-  color: var(--muted);
-  font-size: .64rem;
-  line-height: 1.8;
-}
-
-.project-link {
-  margin-top: 1.2rem;
+  min-height: 2.6rem;
+  padding: .45rem 2rem;
   color: var(--ink);
+  font-size: clamp(.68rem, 1.1vw, .82rem);
+  letter-spacing: .035em;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color 180ms ease, text-shadow 220ms ease, transform 180ms ease;
+}
+
+.work-link:hover {
+  color: var(--rose);
+  transform: translateY(-1px);
+  text-shadow:
+    0 0 10px rgba(239,180,202,.42),
+    0 0 24px rgba(239,180,202,.2);
+}
+
+.work-link:focus-visible {
+  outline: 1px solid var(--rose);
+  outline-offset: 5px;
+}
+
+.work-link-mark {
+  position: absolute;
+  right: .35rem;
+  color: var(--rose);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.work-link:hover .work-link-mark,
+.work-link:focus-visible .work-link-mark {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .social-links {
@@ -342,24 +329,10 @@ section { padding: 4rem 0; }
     letter-spacing: .04em;
   }
 
-  .work-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .project {
-    min-height: 175px;
-    padding: 2rem 1rem;
-  }
-
-  .project h2 {
-    font-size: .72rem;
-    white-space: nowrap;
-  }
-
-  .project p {
-    font-size: .58rem;
-    white-space: nowrap;
+  .work-link {
+    width: 100%;
+    padding-inline: 1.5rem;
+    font-size: .66rem;
   }
 }
 
@@ -367,5 +340,5 @@ section { padding: 4rem 0; }
   html { scroll-behavior: auto; }
   .pixel-sky-video,
   .background-motion-toggle { display: none; }
-  .project { transition: none; }
+  .work-link { transition: none; }
 }
