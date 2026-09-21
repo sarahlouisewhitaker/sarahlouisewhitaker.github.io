@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import AnimatedBackground from "../components/AnimatedBackground.astro";
 
 const title = "sarahwhitaker";
 ---
@@ -13,9 +14,7 @@ const title = "sarahwhitaker";
     <title>{title}</title>
   </head>
   <body class="night-design">
-    <div class="sky-art" aria-hidden="true">
-      <img class="pixel-sky" src="/art/pixel-sky.png" alt="" />
-    </div>
+    <AnimatedBackground />
 
     <main>
       <header class="hero">
