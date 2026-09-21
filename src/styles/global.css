@@ -100,8 +100,8 @@ main {
 }
 
 .hero {
-  min-height: 32vw;
-  padding: 14vw 0 1rem;
+  min-height: 0;
+  padding: 9vw 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,7 +111,7 @@ main {
 #work {
   width: min(680px, 54vw);
   margin-inline: auto;
-  padding-top: 2vw;
+  padding-top: 1vw;
 }
 
 .hero-heart {
@@ -170,7 +170,7 @@ h1 {
   letter-spacing: .075em;
 }
 
-section { padding: 4rem 0; }
+section { padding: 2.5rem 0; }
 
 .section-heading {
   display: grid;
@@ -178,7 +178,7 @@ section { padding: 4rem 0; }
   align-items: center;
   gap: 1rem;
   width: min(520px, 100%);
-  margin: 0 auto 2rem;
+  margin: 0 auto 1.35rem;
 }
 
 .section-heading > span {
