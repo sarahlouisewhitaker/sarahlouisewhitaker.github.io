@@ -1,5 +1,4 @@
 ---
-// Assets live in public/art/; this user-site repository has no base path.
 const poster = "/art/knight-background.png";
 ---
 
@@ -19,39 +18,18 @@ const poster = "/art/knight-background.png";
     <source data-src="/art/knight-loop.mp4" type="video/mp4" />
   </video>
 </div>
-<button
-  id="background-motion-toggle"
-  class="background-motion-toggle"
-  type="button"
-  aria-controls="knight-background-video"
-  hidden
->Pause animation</button>
 
 <script>
   const video = document.querySelector<HTMLVideoElement>("#knight-background-video");
-  const toggle = document.querySelector<HTMLButtonElement>("#background-motion-toggle");
 
-  if (video && toggle) {
+  if (video) {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     let sourcesAttached = false;
-    let motionEnabled = !preference.matches;
-
-    function syncButton() {
-      if (!video || !toggle) return;
-      toggle.textContent = video.paused ? "Play animation" : "Pause animation";
-    }
 
     async function updatePlayback() {
-      if (!video || !toggle) return;
-      if (preference.matches) {
+      if (preference.matches || document.hidden) {
         video.pause();
         video.classList.remove("is-ready");
-        toggle.hidden = true;
-        return;
-      }
-
-      if (!motionEnabled || document.hidden) {
-        video.pause();
         return;
       }
 
@@ -63,35 +41,26 @@ const poster = "/art/knight-background.png";
         video.load();
       }
 
-      toggle.hidden = false;
       try {
         await video.play();
       } catch {
-        syncButton();
+        // Keep the poster visible if autoplay is unavailable.
       }
     }
 
     video.addEventListener("playing", () => {
-      if (preference.matches || !motionEnabled || document.hidden) {
+      if (preference.matches || document.hidden) {
         video.pause();
         return;
       }
       video.classList.add("is-ready");
-      syncButton();
     });
-    video.addEventListener("pause", syncButton);
+
     video.addEventListener("error", () => {
       video.classList.remove("is-ready");
-      toggle.hidden = true;
     });
-    toggle.addEventListener("click", () => {
-      motionEnabled = video.paused;
-      void updatePlayback();
-    });
-    preference.addEventListener("change", () => {
-      motionEnabled = !preference.matches;
-      void updatePlayback();
-    });
+
+    preference.addEventListener("change", () => void updatePlayback());
     document.addEventListener("visibilitychange", () => void updatePlayback());
     void updatePlayback();
   }
