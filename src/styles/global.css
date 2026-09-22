@@ -571,6 +571,35 @@ section { padding: 1.75rem 0; }
 }
 
 
+/* Shared card treatment: all card-like content gets the same soft pink hover glow. */
+.stats > div,
+.method-grid > div,
+.chart,
+.pipeline,
+.pipeline > div,
+.validation,
+.cards > div,
+.finding {
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 220ms ease;
+}
+
+.stats > div:hover,
+.method-grid > div:hover,
+.chart:hover,
+.pipeline:hover,
+.pipeline > div:hover,
+.validation:hover,
+.cards > div:hover,
+.finding:hover {
+  transform: translateY(-2px);
+  border-color: var(--rose);
+  background: rgba(20,22,43,.58);
+  box-shadow:
+    0 0 14px rgba(239,180,202,.22),
+    0 0 32px rgba(239,180,202,.12),
+    inset 0 0 18px rgba(239,180,202,.035);
+}
+
 .inline-project-link {
   color: var(--rose);
   text-decoration: underline;
