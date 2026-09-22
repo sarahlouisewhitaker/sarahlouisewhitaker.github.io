@@ -579,6 +579,16 @@ section { padding: 1.75rem 0; }
   transition: color 180ms ease, text-shadow 180ms ease;
 }
 
+/* Card rule: interactive cards use the same soft pink glow as homepage project cards. */
+.project:hover,
+.case-card:hover,
+.process div:hover { 
+  box-shadow:
+    0 0 14px rgba(239,180,202,.22),
+    0 0 32px rgba(239,180,202,.12),
+    inset 0 0 18px rgba(239,180,202,.035);
+}
+
 .inline-project-link:hover {
   color: #ffd7e6;
   text-shadow: 0 0 12px rgba(239,180,202,.45);
