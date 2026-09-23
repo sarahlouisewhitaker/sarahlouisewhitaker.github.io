@@ -12,7 +12,7 @@ const W = 1672;
 const H = 941;
 const STEP = 1 / 12; // the painting's loop runs at 12fps; step the rig at the same cadence
 
-// Rig atlas layout (public/art/rig/horse-rig.png). x/y = where the piece sits in the painting.
+// Rig atlas layout (public/art/horse-rig.png). x/y = where the piece sits in the painting.
 const RIG = {
   headSprite: { sx: 0, sy: 0, w: 200, h: 260, x: 1330, y: 400 },
   headPatch: { sx: 0, sy: 260, w: 200, h: 260, x: 1330, y: 400 },
