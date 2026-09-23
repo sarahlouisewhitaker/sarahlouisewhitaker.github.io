@@ -68,7 +68,8 @@ main {
 }
 
 .pixel-sky,
-.pixel-sky-video {
+.pixel-sky-video,
+.pixel-sky-rig {
   position: absolute;
   inset: 0;
   display: block;
@@ -80,6 +81,8 @@ main {
 
 .pixel-sky-video { opacity: 0; }
 .pixel-sky-video.is-ready { opacity: 1; }
+.pixel-sky-rig { opacity: 0; transition: opacity 400ms ease; }
+.pixel-sky-rig.is-ready { opacity: 1; }
 
 .background-motion-toggle {
   position: fixed;
@@ -351,6 +354,7 @@ section { padding: 1.75rem 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .pixel-sky-video,
+  .pixel-sky-rig,
   .background-motion-toggle { display: none; }
   .project { transition: none; }
 }
