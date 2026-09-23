@@ -1,0 +1,91 @@
+---
+const poster = "/art/knight-background.png";
+---
+
+<div class="sky-art" aria-hidden="true">
+  <img class="pixel-sky" src={poster} alt="" width="1672" height="941" fetchpriority="high" />
+  <video
+    id="knight-background-video"
+    class="pixel-sky-video"
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster={poster}
+    tabindex="-1"
+  >
+    <source data-src="/art/knight-loop.webm" type="video/webm" />
+    <source data-src="/art/knight-loop.mp4" type="video/mp4" />
+  </video>
+  <canvas id="horse-rig" class="pixel-sky-rig" width="1672" height="941"></canvas>
+</div>
+
+<script>
+  import { startHorseRig } from "../scripts/horse-rig";
+
+  const rigCanvas = document.querySelector<HTMLCanvasElement>("#horse-rig");
+  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (rigCanvas) {
+    startHorseRig(rigCanvas)
+      .then((rig) => {
+        if (!rig) return;
+        (window as any).__horseRig = rig;
+        const sync = () => {
+          if (motionQuery.matches || document.hidden) rig.stop();
+          else rig.start();
+        };
+        motionQuery.addEventListener("change", sync);
+        document.addEventListener("visibilitychange", sync);
+        sync();
+      })
+      .catch(() => {
+        // Rig assets failed to load: the painting and its video loop still show.
+      });
+  }
+
+  const video = document.querySelector<HTMLVideoElement>("#knight-background-video");
+
+  if (video) {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let sourcesAttached = false;
+
+    async function updatePlayback() {
+      if (preference.matches || document.hidden) {
+        video.pause();
+        video.classList.remove("is-ready");
+        return;
+      }
+
+      if (!sourcesAttached) {
+        video.querySelectorAll<HTMLSourceElement>("source[data-src]").forEach((source) => {
+          if (source.dataset.src) source.src = source.dataset.src;
+        });
+        sourcesAttached = true;
+        video.load();
+      }
+
+      try {
+        await video.play();
+      } catch {
+        // Keep the poster visible if autoplay is unavailable.
+      }
+    }
+
+    video.addEventListener("playing", () => {
+      if (preference.matches || document.hidden) {
+        video.pause();
+        return;
+      }
+      video.classList.add("is-ready");
+    });
+
+    video.addEventListener("error", () => {
+      video.classList.remove("is-ready");
+    });
+
+    preference.addEventListener("change", () => void updatePlayback());
+    document.addEventListener("visibilitychange", () => void updatePlayback());
+    void updatePlayback();
+  }
+</script>
