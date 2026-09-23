@@ -18,7 +18,6 @@ const RIG = {
   headPatch: { sx: 0, sy: 260, w: 200, h: 260, x: 1330, y: 400 },
   tailSprite: { sx: 0, sy: 520, w: 116, h: 220, x: 1556, y: 550 },
   tailPatch: { sx: 0, sy: 740, w: 116, h: 220, x: 1556, y: 550 },
-  fg: { sx: 0, sy: 960, w: 260, h: 360, x: 1340, y: 440 },
 } as const;
 
 // Skeleton, in painting coordinates.
@@ -101,7 +100,6 @@ export async function startHorseRig(stage: HTMLCanvasElement) {
   const headPatch = piece("headPatch");
   const tailSprite = piece("tailSprite");
   const tailPatch = piece("tailPatch");
-  const fg = piece("fg");
 
   // ---------- precomputed weight maps (rest coordinates) ----------
   const HB = headSprite;
@@ -256,65 +254,6 @@ export async function startHorseRig(stage: HTMLCanvasElement) {
     tailOutCtx.putImageData(tailImg, 0, 0);
   }
 
-  // ---------- smoke ----------
-  const SB = { x: 1236, y: 96, w: 368, h: 680 };
-  const SCALE = 4;
-  const [smokeLo, smokeLoCtx] = canvas(SB.w / SCALE, SB.h / SCALE);
-  const [smokeHi, smokeHiCtx] = canvas(SB.w, SB.h);
-  type Puff = { x: number; y: number; vx: number; vy: number; age: number; life: number; r0: number; seed: number };
-  const puffs: Puff[] = [];
-  let spawnClock = 0;
-  const spawn = () => puffs.push({
-    x: FIRE.x + rand(-5, 5), y: FIRE.y + rand(-4, 4),
-    vx: rand(-1.5, 1.5), vy: -rand(25, 33),
-    age: 0, life: rand(13, 17), r0: rand(2.5, 4.5), seed: Math.random() * 100,
-  });
-  // prewarm so the column is already there on load
-  for (let t = 0; t < 16; t += STEP) stepSmoke(STEP, t);
-
-  function stepSmoke(dt: number, time: number) {
-    spawnClock -= dt;
-    while (spawnClock <= 0) { spawn(); spawnClock += rand(0.22, 0.34); }
-    for (let i = puffs.length - 1; i >= 0; i--) {
-      const p = puffs[i];
-      p.age += dt;
-      if (p.age > p.life) { puffs.splice(i, 1); continue; }
-      const wind = 2.5 + 4 * Math.sin(time * 0.23 + p.seed) + 3 * Math.sin(p.y * 0.012 + time * 0.4);
-      p.vx += (wind - p.vx) * 0.6 * dt;
-      p.vy *= 1 - 0.06 * dt;
-      p.x += p.vx * dt;
-      p.y += p.vy * dt;
-    }
-  }
-
-  function drawSmoke(target: CanvasRenderingContext2D) {
-    const c = smokeLoCtx;
-    c.clearRect(0, 0, smokeLo.width, smokeLo.height);
-    for (const p of puffs) {
-      const u = p.age / p.life;
-      const alpha = 0.3 * smooth(0, 0.1, u) * Math.pow(1 - u, 1.4);
-      if (alpha < 0.004) continue;
-      const r = p.r0 + p.age * 2.7;
-      const warm = smooth(0.25, 0, u);
-      const cr = Math.round(112 + 70 * warm), cg = Math.round(108 + 18 * warm), cb = Math.round(142 - 30 * warm);
-      c.fillStyle = `rgba(${cr},${cg},${cb},${alpha.toFixed(3)})`;
-      for (let b = 0; b < 3; b++) {
-        const ox = Math.sin(p.seed + b * 2.1) * r * 0.45, oy = Math.cos(p.seed * 1.3 + b * 1.7) * r * 0.3;
-        c.beginPath();
-        c.arc((p.x + ox - SB.x) / SCALE, (p.y + oy - SB.y) / SCALE, (r * (0.62 + 0.18 * b)) / SCALE, 0, Math.PI * 2);
-        c.fill();
-      }
-    }
-    const h = smokeHiCtx;
-    h.globalCompositeOperation = "source-over";
-    h.clearRect(0, 0, SB.w, SB.h);
-    h.drawImage(smokeLo, 0, 0, SB.w, SB.h);
-    h.globalCompositeOperation = "destination-out";
-    h.drawImage(fg.canvas, fg.x - SB.x, fg.y - SB.y);
-    h.globalCompositeOperation = "source-over";
-    target.drawImage(smokeHi, SB.x, SB.y);
-  }
-
   // ---------- behaviour ----------
   const pose: Pose = { ...REST };
   const spring = { neck: 0, head: 0, ears: 0, vNeck: 0, vHead: 0, vEars: 0 };
@@ -411,7 +350,6 @@ export async function startHorseRig(stage: HTMLCanvasElement) {
     if (tailT < 0 && nextTail <= 0) { tailT = 0; tailDir = Math.random() < 0.75 ? -1 : 0.7; nextTail = rand(6.5, 11); }
     if (tailT >= 0) { tailT += dt; if (tailT > TAIL_DUR) tailT = -1; }
 
-    stepSmoke(dt, time);
   }
 
   const posed = () =>
@@ -434,7 +372,6 @@ export async function startHorseRig(stage: HTMLCanvasElement) {
 
     const moving = posed();
     if (moving) ctx!.drawImage(headPatch.canvas, HB.x, HB.y);
-    drawSmoke(ctx!);
 
     const key = moving
       ? [pose.neck, pose.head, pose.ear0, pose.ear1, pose.maneAmp, pose.manePhase].map((v) => v.toFixed(3)).join()
