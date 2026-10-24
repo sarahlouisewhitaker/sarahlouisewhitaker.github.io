@@ -1,57 +1,214 @@
----
-import "../styles/global.css";
-import AnimatedBackground from "../components/AnimatedBackground.astro";
-
-const title = "sarahwhitaker";
----
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sarah Whitaker is a statistics graduate working in QA, automation, data, and research." />
-    <title>{title}</title>
-  </head>
-  <body class="night-design">
-    <AnimatedBackground />
-
-    <main>
-      <header class="hero">
-        <div class="hero-heart">♡</div>
-        <h1>sarahwhitaker</h1>
-        <div class="floral-divider" aria-hidden="true">
-          <span></span><b>✿</b><span></span>
-        </div>
-        <p class="intro">STATISTICS&nbsp;&nbsp;·&nbsp;&nbsp; QA&nbsp;&nbsp; ·&nbsp;&nbsp; DATA&nbsp;&nbsp; ·&nbsp;&nbsp; RESEARCH</p>
-      </header>
-
-      <section id="work">
-        <div class="section-heading">
-          <p class="section-label">FEATURED WORK</p>
-        </div>
-
-        <nav class="featured-work" aria-label="Featured work">
-          <a class="project" href="/projects/studio-ghibli-revenue-analysis/">
-            <span class="project-title">studio ghibli &amp; anime similarity research</span>
-            <span class="project-meta">bayesian analysis · data integration · similarity modeling · R</span>
-            <span class="work-link-mark" aria-hidden="true">✦</span>
-          </a>
-          <a class="project" href="/projects/sports/">
-            <span class="project-title">sports analytics research</span>
-            <span class="project-meta">data collection · statistics · research</span>
-            <span class="work-link-mark" aria-hidden="true">✦</span>
-          </a>
-        </nav>
-      </section>
-
-      <footer>
-        <nav class="social-links" aria-label="Social links">
-          <a href="https://github.com/sarahlouisewhitaker" target="_blank" rel="noopener noreferrer">GITHUB</a>
-          <span aria-hidden="true">♡</span>
-          <a href="https://www.linkedin.com/in/sarah-louise-whitaker" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-        </nav>
-      </footer>
-    </main>
-  </body>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>sarahwhitaker</title>
+<meta name="description" content="Sarah Whitaker is a statistics graduate working in QA, automation, data, and research.">
+<meta name="theme-color" content="#efe7d8">
+<!-- themes: the script puts the saved theme on <html> before the first paint; themes.css must follow washi-cats.css -->
+<script is:inline src="/themes.js?v=20261024d"></script>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/washi-cats.css?v=20261024">
+<link rel="stylesheet" href="/themes.css?v=20261024c">
+<style is:global>
+/* header: same layout as 07 Washi, with a small lucky-cat illustration in place of the circle */
+.hero{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:clamp(16px,4vw,56px);align-items:center;padding:24px clamp(16px,5vw,64px) 56px;min-height:64vh}
+.tate{writing-mode:vertical-rl;font-family:var(--font-display);font-size:13px;letter-spacing:.45em;color:var(--sumi);height:300px;text-align:center}
+.center{text-align:center}
+.cat{position:relative;display:inline-block;width:clamp(140px,16vw,190px);aspect-ratio:500/558;cursor:pointer;animation:settle 1s cubic-bezier(.3,1.5,.5,1) .2s both,idle 4.5s ease-in-out 1.2s infinite}
+@keyframes settle{from{opacity:0;transform:translateY(16px) scale(.92)}}
+@keyframes idle{50%{transform:translateY(-6px)}}
+.cat img,.flat img{position:absolute;inset:0;width:100%;height:100%;filter:saturate(.45) sepia(.25) contrast(.95);transition:filter .6s}
+.cat:hover img,#companion:hover .flat img{filter:none}
+.cat:hover{animation:hop .7s cubic-bezier(.3,1.4,.5,1)}
+@keyframes hop{30%{transform:translateY(-16px)}55%{transform:translateY(0) scale(1.03,.96)}75%{transform:translateY(-3px)}}
+.cat:hover:after{animation:shadow .7s cubic-bezier(.3,1.4,.5,1)}
+@keyframes shadow{30%{transform:scaleX(.7);opacity:.5}}
+.spark{position:absolute;color:var(--gold);font-size:16px;opacity:0;pointer-events:none;z-index:2}
+.spark.s1{left:-8%;top:18%}.spark.s2{right:-6%;top:6%;font-size:12px}.spark.s3{right:-12%;top:46%;font-size:20px}.spark.s4{left:2%;top:-4%;font-size:11px}
+.cat:hover .spark{animation:spark .9s ease-out forwards}
+.cat:hover .s2{animation-delay:.08s}.cat:hover .s3{animation-delay:.16s}.cat:hover .s4{animation-delay:.24s}
+@keyframes spark{0%{opacity:0;transform:scale(.2) rotate(0)}40%{opacity:1;transform:scale(1.2) rotate(40deg)}100%{opacity:0;transform:translateY(-14px) scale(.8) rotate(90deg)}}
+/* same picture twice: the body with the raised paw cut out, and the paw alone, pivoting at the wrist */
+.cat .body,.flat .body{z-index:1;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,0 47.2%,14.4% 47.2%,26.4% 49%,18.4% 37.1%,19.4% 33.3%,0 33.3%)}
+.cat .paw,.flat .paw{z-index:0;clip-path:polygon(0 33.3%,19.4% 33.3%,19.6% 37.1%,28% 49.8%,14.4% 48%,0 48%);transform-origin:14.4% 48%;animation:beckon 1.6s ease-in-out infinite}
+@keyframes beckon{0%,100%{transform:rotate(0)}45%{transform:rotate(7deg)}}
+.cat:after{content:'';position:absolute;left:18%;right:18%;bottom:1%;height:10px;border-radius:50%;background:var(--shade);z-index:-1}
+/* shown until the real art file exists */
+.cat .slot{display:none;position:absolute;inset:0;border:1.5px dashed var(--line);border-radius:50%;place-items:center;font-size:10px;letter-spacing:.25em;color:var(--sumi);line-height:1.8;padding:24px}
+.cat.empty img{display:none}.cat.empty{animation:none}.cat.empty .slot{display:grid}
+.name{margin-top:22px}
+.name h1{font-family:var(--font-display);font-weight:400;font-size:22px;letter-spacing:.4em;text-transform:uppercase}
+.name p{font-family:var(--font-label);font-size:11px;letter-spacing:.35em;color:var(--sumi);margin-top:6px}
+.name .rule{width:0;height:1px;background:var(--seal);margin:18px auto 0;animation:rule 1.2s cubic-bezier(.2,.8,.2,1) .8s forwards}
+@keyframes rule{to{width:48px}}
+/* about me: a centered ruled fact list */
+.facts{list-style:none;padding:0;max-width:520px;margin:0 auto;border-top:1px solid var(--line)}
+.facts li{position:relative;isolation:isolate;display:grid;grid-template-columns:1fr 22px 120px minmax(0,220px) 1fr;column-gap:10px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line);font-size:14px;cursor:default;transition:border-color .3s}
+.facts li:before{content:'+';grid-column:2;font-size:17px;line-height:1;text-align:center;color:var(--gold);transition:transform .45s cubic-bezier(.3,1.6,.5,1),color .3s}
+.facts li:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,transparent,var(--card) 18%,var(--card) 82%,transparent);transform:scaleX(0);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.facts .k{grid-column:3;font-family:var(--font-label);font-size:11px;letter-spacing:.25em;color:var(--sumi);transition:color .3s,letter-spacing .4s}
+.facts .v{grid-column:4;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.facts li:hover{border-color:var(--seal)}
+.facts li:hover:before{transform:rotate(45deg);color:var(--seal)}
+.facts li:hover:after{transform:scaleX(1)}
+.facts li:hover .k{color:var(--seal);letter-spacing:.32em}
+.facts li:hover .v{transform:translateX(6px)}
+.facts a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s}
+.facts a:hover{border-color:var(--ink)}
+/* illustrations tucked into the work cards */
+.work .art{position:absolute;right:18px;top:16px;width:110px;height:110px;object-fit:contain;opacity:.32;filter:grayscale(1) sepia(.35);transform:rotate(6deg);transition:opacity .5s,filter .5s,transform .6s cubic-bezier(.3,1.5,.5,1)}
+.work:hover .art{opacity:1;filter:saturate(.6) sepia(.15);transform:rotate(-4deg) translateY(-4px) scale(1.06)}
+.work h3,.work .meta{padding-right:110px}
+.work .scene{display:block}
+.scene .tv{position:absolute;right:0;top:0;width:68%}
+.scene .glow{position:absolute;right:16%;top:10%;width:36%;height:26%;border-radius:8px;background:#fff6d8;opacity:0;mix-blend-mode:screen}
+.work:hover .scene .glow{animation:flicker 1.6s steps(1) infinite}
+@keyframes flicker{0%{opacity:.35}20%{opacity:.15}35%{opacity:.45}55%{opacity:.2}70%{opacity:.4}}
+.scene .viewer{position:absolute;left:-14%;bottom:-8%;width:38%;transform-origin:50% 100%;transition:transform .5s cubic-bezier(.3,1.5,.5,1)}
+.work:hover .scene .viewer{transform:rotate(-6deg)}
+/* palette: plain swatches named after cat coats */
+.coats2{display:flex;flex-wrap:wrap;justify-content:center;gap:22px}
+.sw{background:none;border:0;font:inherit;font-family:var(--font-label);cursor:pointer;text-align:center;color:var(--sumi);font-size:11px;letter-spacing:.15em;width:72px}
+.sw i{display:block;width:48px;height:48px;border-radius:50%;margin:0 auto 10px;border:1px solid var(--line);transition:transform .4s cubic-bezier(.3,1.6,.5,1),border-radius .4s}
+.sw:hover i{transform:translateY(-6px) scale(1.08);border-radius:30%}
+.sw small{display:block;font-size:10px;margin-top:2px;opacity:.7}
+html{scroll-behavior:smooth}
+@media(max-width:760px){.hero{min-height:auto;padding-top:40px;padding-bottom:72px}}
+/* the smallest phones: four nav links + the stamp only fit with tighter spacing */
+@media(max-width:380px){nav a{margin-left:11px;letter-spacing:.1em}}
+:focus-visible{outline:2px solid var(--seal);outline-offset:4px}
+/* hero: the name and side text arrive after the cat settles */
+.name h1,.name p{opacity:0;transform:translateY(10px);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+.name h1{animation-delay:.35s}.name p{animation-delay:.55s}
+.tate{opacity:0;animation:fadein 1.4s ease .9s forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes fadein{to{opacity:1}}
+/* sections ease in as they reach the viewport */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+/* nav: the link for the section you're reading stays underlined */
+nav a.here:after{transform:scaleX(1)}
+/* footer: name, seal, links on one line; credits quietly underneath */
+footer{flex-wrap:wrap;row-gap:20px}
+footer .credits{flex-basis:100%;order:3;margin:0;text-align:center;font-family:var(--font-body);font-size:10.5px;letter-spacing:.08em;line-height:1.9;color:var(--sumi)}
+footer .credits a{color:inherit}
+@media(max-width:760px){footer{flex-direction:column;text-align:center;gap:10px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.name h1,.name p,.reveal{opacity:1;transform:none;animation:none;transition:none}.tate{opacity:1;animation:none}}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.tate{display:none}.work .art{width:76px;height:76px}.work h3,.work .meta{padding-right:70px}.facts li{grid-template-columns:0 22px 104px 1fr 0;column-gap:8px}footer .seal{display:none}}
+</style>
+<script is:inline type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<style is:global>
+/* 3D companion: a fixed box the script moves from the header slot to the corner */
+#companion{position:fixed;left:0;top:0;width:260px;height:290px;transform-origin:0 0;z-index:30;cursor:pointer;will-change:transform;visibility:hidden}
+.companion-on #companion{visibility:visible}
+/* a little speech bubble when the cat swaps what it's holding */
+#bubble{position:fixed;left:0;top:0;z-index:31;pointer-events:none;padding:7px 13px;background:#fbf7f0;border:1px solid var(--line);border-radius:14px 14px 4px 14px;font-family:'Shippori Mincho';font-size:13px;letter-spacing:.06em;color:var(--ink);white-space:nowrap;box-shadow:0 8px 18px -12px #1d1a1766;opacity:0;transform-origin:100% 100%}
+#bubble.say{animation:say 1.9s cubic-bezier(.2,.8,.2,1)}
+@keyframes say{0%{opacity:0;scale:.6}12%{opacity:1;scale:1.04}20%{scale:1}82%{opacity:1}100%{opacity:0;scale:.96}}
+#companion .stage{position:absolute;inset:0}
+#companion canvas{position:absolute;inset:0;z-index:2;filter:saturate(.55) sepia(.2) contrast(.97);transition:filter .5s}
+#companion:hover canvas{filter:none}
+/* the flat cat inside the box, placed so it lines up with the header slot when docked */
+#companion .flat{position:absolute;left:10%;top:6.4%;width:80%;height:80%}
+#companion.is-3d .flat{display:none}
+#companion:not(.docked):after{content:'';position:absolute;left:24%;right:24%;bottom:3%;height:16px;border-radius:50%;background:#1d1a1714;z-index:-1}
+#companion .spark{position:absolute;color:var(--gold);font-size:30px;opacity:0;pointer-events:none}
+#companion .s1{left:4%;top:22%}#companion .s2{right:8%;top:10%;font-size:22px}#companion .s3{right:2%;top:50%;font-size:36px}#companion .s4{left:14%;top:4%;font-size:20px}
+#companion.sparkle .spark{animation:spark .9s ease-out forwards}
+#companion.sparkle .s2{animation-delay:.08s}#companion.sparkle .s3{animation-delay:.16s}#companion.sparkle .s4{animation-delay:.24s}
+/* once the 3D cat exists, the flat one in the header steps aside (its slot stays for layout) */
+.companion-on .cat img,.companion-on .cat .spark{visibility:hidden}.companion-on .cat{animation:none}
+</style>
+<link rel="stylesheet" href="/craft.css?v=20261024">
+<link rel="stylesheet" href="/kit.css?v=20261024b">
+</head>
+<body>
+<div class="theme-bar" role="toolbar" aria-label="Theme">
+  <p class="tb-label" aria-hidden="true"><b>✿</b>Theme</p>
+  <div class="tb-list">
+    <button type="button" class="tb-theme" data-pick="washi" aria-pressed="true"><i class="tb-sw" data-theme="washi" aria-hidden="true"></i><span>Washi</span></button>
+    <button type="button" class="tb-theme" data-pick="night" aria-pressed="false"><i class="tb-sw" data-theme="night" aria-hidden="true"></i><span>Night</span></button>
+    <button type="button" class="tb-theme" data-pick="mochi" aria-pressed="false"><i class="tb-sw" data-theme="mochi" aria-hidden="true"></i><span>Mochi</span></button>
+    <button type="button" class="tb-theme" data-pick="kissaten" aria-pressed="false"><i class="tb-sw" data-theme="kissaten" aria-hidden="true"></i><span>Kissaten</span></button>
+    <button type="button" class="tb-theme" data-pick="sunprint" aria-pressed="false"><i class="tb-sw" data-theme="sunprint" aria-hidden="true"></i><span>Sunprint</span></button>
+  </div>
+  <span class="tb-now" aria-hidden="true"></span>
+  <button type="button" class="tb-copy" aria-label="Copy CSS for the Washi theme"><b aria-hidden="true">✦</b><span>Copy CSS</span></button>
+</div>
+<nav><span class="seal">SW</span><div><a href="#about">ABOUT</a><a href="#work">WORK</a><a href="https://github.com/sarahlouisewhitaker">GITHUB</a><a href="https://www.linkedin.com/in/sarah-louise-whitaker">LINKEDIN</a></div></nav>
+<div class="hero">
+  <div class="tate">FINDING STORIES IN NUMBERS</div>
+  <div class="center">
+    <div class="cat" id="cat"><img class="body" src="/art/maneki-neko.png" alt="A lucky cat waving one paw" onerror="this.parentNode.classList.add('empty')"><img class="paw" src="/art/maneki-neko.png" alt=""><span class="spark s1">✦</span><span class="spark s2">✦</span><span class="spark s3">✦</span><span class="spark s4">✧</span><span class="slot">LUCKY CAT<br>ART GOES HERE<br>art/maneki-neko.png</span></div>
+    <div class="name"><h1>Sarah Whitaker</h1><p>STATISTICS · QA · DATA · RESEARCH</p><div class="rule"></div></div>
+  </div>
+  <div class="tate">STATISTICS · QA · DATA</div>
+</div>
+<section id="about" style="padding-top:8px">
+  <ul class="facts reveal">
+    <li><span class="k">BASED IN</span><span class="v">Utah</span></li>
+    <li><span class="k">STUDIED</span><span class="v">Statistics</span></li>
+    <li><span class="k">WORK</span><span class="v">QA · data · research</span></li>
+    <li><span class="k">TOOLS</span><span class="v">R · Python · Bayesian</span></li>
+    <li><span class="k">LIKES</span><span class="v">Cats, anime, boba</span></li>
+    <li><span class="k">CONNECT</span><span class="v"><a href="https://github.com/sarahlouisewhitaker">GitHub</a> · <a href="https://www.linkedin.com/in/sarah-louise-whitaker">LinkedIn</a></span></li>
+  </ul>
+</section>
+<section id="work" style="padding-top:0">
+  <p class="label">FEATURED WORK</p>
+  <div class="divider"><i></i>✿<i></i></div>
+  <div class="wrap works reveal">
+    <a class="work" href="/projects/studio-ghibli-revenue-analysis/"><span class="art scene" aria-hidden="true"><img class="tv" src="/art/retro-tv.png" alt=""><span class="glow"></span><img class="viewer" src="/art/cat-back.png" alt=""></span><h3>Studio Ghibli &amp; anime similarity</h3><p>Can Miyazaki's influence on anime be measured? Bayesian similarity modeling across films, built in R.</p><span class="go">READ →</span></a>
+    <a class="work" href="/projects/sports/"><img class="art" src="/art/soccer-cat.png" alt=""><h3>Sports analytics research</h3><p>Is cross country a team sport? Over two million race records, collected, cleaned, matched, and validated to find out.</p><span class="go">READ →</span></a>
+  </div>
+</section>
+<section id="craft" class="craft">
+  <div class="wrap craft-in reveal">
+    <h2 class="craft-title">Messy data in.<br><em>Clear answers out.</em></h2>
+    <p class="craft-sub">Like the two million records behind my sports research: collected, cleaned, matched and checked until the story was easy to read.</p>
+    <div class="craft-flow" role="img" aria-label="Animation: a worker cat winds up a little machine. Scattered data points pour into a funnel, turn through the gears, and come out as one tidy stream that builds a clean report."></div>
+  </div>
+</section>
+<section id="palette" style="padding-top:0">
+  <p class="label">PALETTE · CAT COATS · CLICK TO COPY</p>
+  <div class="divider"><i></i>✿<i></i></div>
+  <div class="wrap coats2 reveal">
+    <button class="sw" data-hex="#F4EFE6" data-name="Snow"><i style="background:#f4efe6"></i>SNOW<small>#F4EFE6</small></button>
+    <button class="sw" data-hex="#E8D3B0" data-name="Cream"><i style="background:#e8d3b0"></i>CREAM<small>#E8D3B0</small></button>
+    <button class="sw" data-hex="#C9864E" data-name="Ginger"><i style="background:#c9864e"></i>GINGER<small>#C9864E</small></button>
+    <button class="sw" data-hex="#A8693A" data-name="Calico"><i style="background:linear-gradient(135deg,#f4efe6 0 40%,#a8693a 40% 70%,#1d1a17 70%)"></i>CALICO<small>#A8693A</small></button>
+    <button class="sw" data-hex="#9C8467" data-name="Tabby"><i style="background:#9c8467"></i>TABBY<small>#9C8467</small></button>
+    <button class="sw" data-hex="#8A8580" data-name="Smoke"><i style="background:#8a8580"></i>SMOKE<small>#8A8580</small></button>
+    <button class="sw" data-hex="#4A443D" data-name="Tuxedo"><i style="background:linear-gradient(180deg,#2b2724 0 60%,#f4efe6 60%)"></i>TUXEDO<small>#4A443D</small></button>
+    <button class="sw" data-hex="#1D1A17" data-name="Black"><i style="background:#1d1a17"></i>BLACK<small>#1D1A17</small></button>
+  </div>
+  <div class="wrap kit reveal">
+    <div class="kit-spec" aria-hidden="true"><span class="kit-aa">Aa</span><span class="kit-btn">Say hello</span><span class="kit-btn is-ghost">Read more</span><span class="kit-chip">#research</span><span class="seal kit-seal">SW</span></div>
+    <div class="kit-text">
+      <p class="kit-h">Like the <span class="kit-name">Washi</span> style? Take it with you.</p>
+      <p class="kit-sub">Copy a ready-made prompt, paste it into ChatGPT or Claude, and it will build you a page that looks like this.</p>
+    </div>
+    <div class="kit-actions">
+      <button class="kit-copy" type="button"><b aria-hidden="true">✦</b>Copy prompt</button>
+      <button class="kit-css" type="button">or copy the CSS</button>
+    </div>
+    <details class="kit-more"><summary>See what gets copied</summary><pre class="kit-pre"></pre></details>
+  </div>
+</section>
+<footer><span>© 2026 SARAH WHITAKER</span><span class="seal" style="width:36px;height:36px;font-size:12px">SW</span><span><a href="https://github.com/sarahlouisewhitaker">GITHUB</a> · <a href="https://www.linkedin.com/in/sarah-louise-whitaker">LINKEDIN</a></span><p class="credits">Illustrations by <a href="https://www.irasutoya.com/">いらすとや</a> · 3D props: <a href="https://poly.pizza/m/9y-mTmCyefL">old tv</a> by Justin Randall (<a href="https://creativecommons.org/licenses/by/3.0/">CC BY</a>), roasting stick from <a href="https://poly.pizza/m/fvH5_kwUsLk">Marshmallows</a> by Chris Ross and <a href="https://poly.pizza/m/0vzzmM-t8CP">campfire</a> by Poly by Google (both <a href="https://creativecommons.org/licenses/by/3.0/">CC BY</a>, modified), boba cup by Kenney</p></footer>
+<div id="companion" title="Back to top" aria-hidden="true"><div class="stage"><div class="flat"><img class="body" src="/art/maneki-neko.png" alt=""><img class="paw" src="/art/maneki-neko.png" alt=""></div></div><span class="spark s1">✦</span><span class="spark s2">✦</span><span class="spark s3">✦</span><span class="spark s4">✧</span></div>
+<div id="bubble" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status"></div>
+<script is:inline>
+const revealer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealer.unobserve(e.target)}}),{rootMargin:'0px 0px -12% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revealer.observe(el));
+const navLinks={about:document.querySelector('nav a[href="#about"]'),work:document.querySelector('nav a[href="#work"]')};
+new IntersectionObserver(es=>es.forEach(e=>navLinks[e.target.id].classList.toggle('here',e.isIntersecting)),{rootMargin:'-45% 0px -45% 0px'}).observe(document.getElementById('about'));
+new IntersectionObserver(es=>es.forEach(e=>navLinks[e.target.id].classList.toggle('here',e.isIntersecting)),{rootMargin:'-45% 0px -45% 0px'}).observe(document.getElementById('work'));
+</script>
+<script is:inline src="/craft.js?v=20261024" defer></script>
+<script is:inline src="/kit.js?v=20261024c" defer></script>
+<script is:inline type="module" src="/companion.js?v=20261024c"></script>
+</body>
 </html>

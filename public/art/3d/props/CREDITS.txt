@@ -1,0 +1,11 @@
+3D props from Poly Pizza (poly.pizza)
+
+boba-cup.glb    — "Frappe" by Kenney. Public Domain (CC0).                 https://poly.pizza/m/ZvYPiZeN0V
+roasting-stick.glb — the stick and its marshmallow, cut from "Marshmallows" by Chris Ross (bag and other
+                  marshmallows removed, marshmallow enlarged, stick thickened, handle at the origin). CC BY 3.0. https://poly.pizza/m/fvH5_kwUsLk
+campfire.glb    — "Campfire" by Poly by Google, split into logs / flames / embers so the flames can flicker. CC BY 3.0. https://poly.pizza/m/0vzzmM-t8CP
+old-tv.glb      — "old tv" by Justin Randall. CC BY 3.0, credit required.    https://poly.pizza/m/9y-mTmCyefL
+
+CC BY 3.0: https://creativecommons.org/licenses/by/3.0/
+
+anime-screen.png — cropped from キャラクターの描かれた缶バッジのイラスト by いらすとや (Irasutoya), free under https://www.irasutoya.com/p/terms.html
