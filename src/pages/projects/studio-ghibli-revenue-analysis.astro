@@ -1,24 +1,301 @@
----
-import "../../styles/global.css";
-import AnimatedBackground from "../../components/AnimatedBackground.astro";
----
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Sarah Whitaker's statistical research into the Miyazaki effect, Studio Ghibli, anime data, and quantitative similarity modeling."/><title>studio ghibli & anime similarity research · sarahwhitaker</title></head>
-<body class="night-design project-page report-page"><AnimatedBackground/><main>
-<header class="project-hero"><a class="back-link" href="/">♡ back home</a><p class="project-kicker">STATISTICAL RESEARCH</p><h1>Studio Ghibli &amp; Anime Similarity Research</h1><div class="floral-divider" aria-hidden="true"><span></span><b>✿</b><span></span></div><p class="project-subtitle">bayesian analysis · data integration · similarity modeling · R</p></header>
-<article class="report-content">
-<section class="report-intro"><p class="section-label">THE PROJECT</p><h2>From the Miyazaki effect to a way of measuring similarity across anime.</h2><p>This project started as a class assignment about Studio Ghibli, but I kept working on it because I wanted to explore a bigger question: if Miyazaki and Studio Ghibli had a meaningful influence on anime, could that influence be observed through measurable similarities between films?</p></section>
-<section class="report-section"><p class="section-label">01 · ORIGINAL STUDY</p><div class="stats"><div><b>23</b><span>Ghibli films</span></div><div><b>11</b><span>Miyazaki-directed</span></div><div><b>$81M</b><span>mean revenue</span></div><div><b>$41M</b><span>median revenue</span></div></div><p>The original analysis asked whether Hayao Miyazaki-directed Studio Ghibli films had higher revenue than films directed by others. The dataset included film name, year, director, screenplay writer, budget, revenue, genres, and duration.</p></section>
-<section class="report-section"><p class="section-label">02 · BAYESIAN ANALYSIS</p><div class="method-grid"><div><b>01 · PRIOR</b><h3>Gamma-Gamma</h3><p>Used α = 2 and β = 0.02, corresponding to a prior mean of $100M.</p></div><div><b>02 · POSTERIOR</b><h3>Revenue estimates</h3><p>Updated the model using the observed revenue of each director group.</p></div><div><b>03 · SIMULATION</b><h3>Monte Carlo</h3><p>Used simulation to examine the posterior distributions and uncertainty.</p></div></div><div class="chart"><h3>Posterior expected revenue</h3><div class="row"><span>Miyazaki</span><i><em style="width:100%"></em></i><b>$104.7M</b></div><div class="row"><span>Other directors</span><i><em style="width:46.5%"></em></i><b>$48.7M</b></div></div></section>
-<section class="report-section"><p class="section-label">03 · THE MIYAZAKI EFFECT</p><h2 class="subhead">The question grew from Miyazaki's impact within Ghibli to his possible influence on anime more broadly.</h2><p>The revenue study gave me a way to think about Miyazaki's impact within Studio Ghibli. I then wanted to ask a broader research question: if Miyazaki had a meaningful influence on anime beyond Ghibli, could films that share more characteristics with Ghibli provide quantitative evidence consistent with that influence?</p><div class="finding">✦ Similarity is not the same thing as causation. The goal was to build a measurable way to explore patterns that could be consistent with influence, not to claim that similarity alone proves where an anime's ideas came from.</div></section>
-<section class="report-section"><p class="section-label">04 · BUILDING THE ANIME DATASET</p><div class="pipeline"><span>multiple data sources</span><b>→</b><span>title matching &amp; cleaning</span><b>→</b><span>merged dataset</span><b>→</b><span>analysis-ready features</span></div><p>I continued the project outside of the original class assignment, combining several anime and movie data sources and working through the messy part of making them usable together: standardizing titles, correcting mismatches, cleaning fields, joining datasets, and restructuring genre and theme information.</p><p>The resulting dataset combined movie information with anime-specific variables such as scores, genres, themes, demographics, setting, and character attributes. I also explored differences between Ghibli and non-Ghibli films through exploratory visualizations.</p></section>
-<section class="report-section"><p class="section-label">05 · SIMILARITY MODELING</p><div class="method-grid"><div><b>01 · FEATURES</b><h3>Mixed data</h3><p>Numeric and categorical characteristics were prepared together for comparison.</p></div><div><b>02 · GOWER DISTANCE</b><h3>Measure distance</h3><p>Gower distance was used because the dataset contains mixed variable types.</p></div><div><b>03 · SIMILARITY</b><h3>1 − distance</h3><p>Distances were converted into a similarity matrix, with higher values representing more similar films.</p></div></div><p>The resulting matrix gave each pair of anime a similarity score based on the characteristics included in the dataset. I used it as a way to explore which films looked most similar to one another across multiple dimensions.</p></section>
-<section class="report-section"><p class="section-label">06 · EXPLORING THE RESULTS</p><p>I visualized the similarity matrix with heatmaps and created a separate view of the top 20 most similar anime pairs. To make the pair analysis more useful, I removed self-similarity and filtered out pairs that shared the same first title word before selecting the highest-scoring matches.</p><div class="finding">✦ The goal was not simply to find a single “most Ghibli” anime. It was to build a quantitative framework for comparing films and use those patterns to explore the broader question behind the project.</div></section>
-<section class="report-section"><p class="section-label">07 · WHAT I LEARNED</p><div class="finding">✦ Data analysis often becomes a data-engineering problem first. Much of the work was cleaning, matching, reshaping, and validating information from different sources.</div><div class="finding">✦ Gower distance provided a way to compare observations containing both numeric and categorical features.</div><div class="finding">✦ A project can evolve when the first question leads to a more interesting one. What started as a focused revenue analysis became an exploration of how to quantify similarity across anime.</div></section>
-<section class="report-section"><p class="section-label">08 · TAKEAWAY</p><p>This project shows the progression from a focused Bayesian analysis to a broader research workflow: start with a question about Miyazaki's impact, build and clean the data, model measurable similarities, visualize the results, and use those results to explore a larger question about influence.</p></section>
-</article>
-<footer><nav class="social-links" aria-label="Social links"><a href="https://github.com/sarahlouisewhitaker" target="_blank" rel="noopener noreferrer">GITHUB</a><span>♡</span><a href="https://www.linkedin.com/in/sarah-louise-whitaker" target="_blank" rel="noopener noreferrer">LINKEDIN</a></nav></footer>
-</main></body></html>
-<style>
-.project-hero h1 { max-width: 820px; margin: 0 auto; white-space: normal; text-align: center; }
-.report-content{max-width:900px;margin:auto;padding:0 1rem 5rem}.report-intro{max-width:760px;text-align:center;margin:0 auto 4rem}.report-intro h2,.subhead{font-size:clamp(1.35rem,2.4vw,2rem);line-height:1.35;font-weight:500}.report-intro p:last-child,.report-section>p{line-height:1.8;color:rgba(255,245,250,.82)}.report-section{margin-bottom:4.5rem}.stats,.method-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin:1.2rem 0}.stats div,.method-grid div,.chart,.pipeline{background:rgba(8,10,22,.58);border:1px solid rgba(239,180,202,.25);border-radius:10px;padding:1.2rem}.stats{text-align:center}.stats b{display:block;color:var(--rose);font-size:1.45rem}.stats span{font-size:.75rem;opacity:.7}.method-grid{grid-template-columns:repeat(3,1fr)}.method-grid b{font-size:.7rem;color:var(--rose)}.method-grid h3{margin:.55rem 0}.method-grid p{line-height:1.6;font-size:.85rem;opacity:.8}.chart h3{font-weight:500;color:var(--rose)}.row{display:grid;grid-template-columns:110px 1fr 75px;gap:1rem;align-items:center;margin:1.2rem 0}.row i{height:18px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}.row em{display:block;height:100%;background:rgba(239,180,202,.85);border-radius:99px}.row b{color:var(--rose)}.pipeline{display:flex;align-items:center;justify-content:space-between;gap:.7rem;text-align:center;line-height:1.4}.pipeline span{flex:1;font-size:.82rem}.pipeline b{color:var(--rose)}.finding{padding:1rem 1.2rem;margin:.7rem 0;background:rgba(8,10,22,.45);border-left:1px solid var(--rose);border-radius:7px;line-height:1.7}@media(max-width:650px){.stats,.method-grid{grid-template-columns:1fr 1fr}.row{grid-template-columns:85px 1fr}.row b{grid-column:2}.pipeline{flex-direction:column}.pipeline b{transform:rotate(90deg)}}@media(max-width:430px){.stats,.method-grid{grid-template-columns:1fr}}
-</style>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ghibli &amp; Anime Similarity · Sarah Whitaker</title>
+<meta name="description" content="Sarah Whitaker's statistical research into the Miyazaki effect, Studio Ghibli, anime data, and quantitative similarity modeling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/projects/project.css?v=20261024">
+<script is:inline>document.documentElement.classList.add('js')</script>
+<script is:inline src="/projects/project.js?v=20261024" defer></script>
+<script is:inline src="/projects/ghibli-figures.js?v=20261024" defer></script>
+</head>
+<!-- Template: theme-moss sets this project's accent. See README.md for the section map. -->
+<body class="theme-moss">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<header class="top">
+  <a class="seal" href="/" aria-label="Sarah Whitaker, home">SW</a>
+  <span class="crumb">RESEARCH <b>01</b></span>
+  <nav aria-label="Site">
+    <a class="back" href="/"><span aria-hidden="true">←</span>HOME</a>
+    <a class="wide" href="/#work">WORK</a>
+    <a class="wide" href="https://github.com/sarahlouisewhitaker">GITHUB</a>
+    <a class="wide" href="https://www.linkedin.com/in/sarah-louise-whitaker">LINKEDIN</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ============ 1 · HERO ============ -->
+<section class="hero" aria-labelledby="title">
+  <p class="tate" aria-hidden="true">MEASURING SIMILARITY ACROSS ANIME</p>
+  <div class="hero-c">
+    <div class="hero-art scene-tv">
+      <span class="tv"><img src="/projects/art/retro-tv.png" alt="A cat sitting in front of an old television"><img class="screen" src="/projects/art/anime-screen.png" alt=""><span class="glow"></span></span>
+      <img class="viewer" src="/projects/art/cat-back.png" alt="">
+      <span class="spark s1" aria-hidden="true">✦</span><span class="spark s2" aria-hidden="true">✦</span><span class="spark s3" aria-hidden="true">✧</span>
+    </div>
+    <h1 id="title">Studio Ghibli &amp; Anime <em>Similarity</em></h1>
+    <div class="rule"></div>
+    <p class="summary">From the Miyazaki effect to a way of measuring similarity across anime.</p>
+  </div>
+  <p class="tate" aria-hidden="true">BAYESIAN · GOWER · R</p>
+</section>
+
+<div class="meta">
+  <dl>
+    <div><dt>METHODS</dt><dd>Bayesian analysis · Gower distance</dd></div>
+    <div><dt>FOCUS</dt><dd>Data integration · similarity modeling</dd></div>
+    <div><dt>TOOLS</dt><dd>R</dd></div>
+    <div><dt>DATA</dt><dd>23 Ghibli films, then merged anime &amp; movie sources</dd></div>
+    <div><dt>ORIGIN</dt><dd>A class assignment I kept working on</dd></div>
+  </dl>
+</div>
+
+<nav class="toc" aria-label="On this page">
+  <a href="#question"><b>01</b>QUESTION</a><a href="#glance"><b>02</b>ORIGINAL STUDY</a><a href="#approach"><b>03</b>APPROACH</a><a href="#findings"><b>04</b>FINDINGS</a><a href="#figures"><b>05</b>FIGURES</a><a href="#reflection"><b>06</b>REFLECTION</a>
+</nav>
+
+<!-- ============ 2 · THE QUESTION (centered) ============ -->
+<section class="chapter is-centered" id="question" data-reveal>
+  <h2 class="vh">The question</h2>
+  <div class="paper-card">
+    <p class="question">If Miyazaki and Studio Ghibli had a meaningful influence on anime, could that influence be observed through measurable similarities between films?</p>
+    <span class="seal is-stamp" aria-hidden="true">SW</span>
+  </div>
+</section>
+
+<!-- ============ 3 · AT A GLANCE ============ -->
+<section class="chapter" id="glance" aria-labelledby="h-glance">
+  <header class="chapter-head">
+    <span class="no">02</span>
+    <h2 id="h-glance">The original study</h2>
+  </header>
+  <div class="chapter-body" data-reveal>
+    <p class="lede">The first analysis asked whether Hayao Miyazaki-directed Studio Ghibli films had higher revenue than films directed by others.</p>
+    <div class="stats" style="--cols:4">
+      <div class="stat"><b>23</b><span>Ghibli films</span></div>
+      <div class="stat"><b>11</b><span>Miyazaki-directed</span></div>
+      <div class="stat"><b>$81M</b><span>Mean revenue</span></div>
+      <div class="stat"><b>$41M</b><span>Median revenue</span></div>
+    </div>
+    <div class="units" data-reveal>
+      <span class="dots" aria-hidden="true">
+        <i class="on" style="--i:0"></i><i class="on" style="--i:1"></i><i class="on" style="--i:2"></i><i class="on" style="--i:3"></i><i class="on" style="--i:4"></i><i class="on" style="--i:5"></i><i class="on" style="--i:6"></i><i class="on" style="--i:7"></i><i class="on" style="--i:8"></i><i class="on" style="--i:9"></i><i class="on" style="--i:10"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </span>
+      <p><b>11</b> of the 23 films were directed by Miyazaki</p>
+    </div>
+    <div>
+      <p class="chips-intro">The dataset included:</p>
+      <ul class="chips">
+        <li>Film name</li><li>Year</li><li>Director</li><li>Screenplay writer</li><li>Budget</li><li>Revenue</li><li>Genres</li><li>Duration</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · APPROACH ============ -->
+<section class="chapter" id="approach" aria-labelledby="h-approach">
+  <header class="chapter-head">
+    <span class="no">03</span>
+    <h2 id="h-approach">Approach</h2>
+    <img class="rail-art" src="/projects/art/film-reel.png" alt="" loading="lazy">
+  </header>
+  <div class="chapter-body">
+    <ol class="steps">
+      <li class="step" data-reveal>
+        <span class="step-no" aria-hidden="true">01</span>
+        <div class="step-body">
+          <h3>A Bayesian look at revenue</h3>
+          <p>I modeled each director group's revenue, then updated the model with what the films actually earned.</p>
+          <div class="trio">
+            <div><h4>Gamma-Gamma prior</h4><p>α = 2 and β = 0.02, a prior mean of $100M.</p></div>
+            <div><h4>Posterior revenue estimates</h4><p>Updated using the observed revenue of each director group.</p></div>
+            <div><h4>Monte Carlo simulation</h4><p>Used to examine the posterior distributions and their uncertainty.</p></div>
+          </div>
+        </div>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step-no" aria-hidden="true">02</span>
+        <div class="step-body">
+          <h3>Ask the bigger question</h3>
+          <p>The revenue study gave me a way to think about Miyazaki's impact within Studio Ghibli. From there the question grew to his possible influence on anime more broadly, so I continued the project outside of the class assignment.</p>
+        </div>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step-no" aria-hidden="true">03</span>
+        <div class="step-body">
+          <h3>Make several sources agree</h3>
+          <ol class="flow">
+            <li>Multiple data sources</li><li>Title matching &amp; cleaning</li><li>Merged dataset</li><li>Analysis-ready features</li>
+          </ol>
+          <p>I combined several anime and movie data sources and worked through the messy part of making them usable together: standardizing titles, correcting mismatches, cleaning fields, joining datasets, and restructuring genre and theme information.</p>
+          <div>
+            <p class="chips-intro">The resulting dataset combined movie information with anime-specific variables such as:</p>
+            <ul class="chips"><li>Scores</li><li>Genres</li><li>Themes</li><li>Demographics</li><li>Setting</li><li>Character attributes</li></ul>
+          </div>
+          <p>I also explored differences between Ghibli and non-Ghibli films through exploratory visualizations.</p>
+        </div>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step-no" aria-hidden="true">04</span>
+        <div class="step-body">
+          <h3>Measure how alike two films are</h3>
+          <div class="trio">
+            <div><h4>Mixed features</h4><p>Numeric and categorical characteristics, prepared together for comparison.</p></div>
+            <div><h4>Gower distance</h4><p>Chosen because the dataset contains mixed variable types.</p></div>
+            <div><h4>Similarity = 1 − distance</h4><p>Distances became a similarity matrix: higher values, more similar films.</p></div>
+          </div>
+          <figure class="viz" data-viz="gower">
+            <div class="viz-stage" role="img" aria-label="Illustrative example, not real films: two films compared on four features. Their scores differ by 0.2 of the range, genre and setting match (0) and theme differs (1). The average, 0.30, is the Gower distance, so their similarity is 0.70."></div>
+            <figcaption><span class="viz-tag">Illustrative</span>Gower distance, worked through on a made-up pair of films</figcaption>
+          </figure>
+          <p>The matrix gave each pair of anime a similarity score based on the characteristics in the dataset, a way to explore which films looked most similar across multiple dimensions.</p>
+        </div>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step-no" aria-hidden="true">05</span>
+        <div class="step-body">
+          <h3>Look for the closest pairs</h3>
+          <p>I visualized the similarity matrix with heatmaps and made a separate view of the top 20 most similar anime pairs. To make the pairs more useful, I filtered before ranking:</p>
+          <ol class="flow is-plain">
+            <li>Similarity matrix</li><li>Remove self-similarity</li><li>Drop pairs sharing a first title word</li><li>Top 20 pairs</li>
+          </ol>
+          <figure class="viz" data-viz="matrix">
+            <div class="viz-stage" role="img" aria-label="Illustrative values, not the real matrix: a twelve-film similarity matrix drawn as a triangle. The diagonal of self-similarity is removed, five pairs that share a first title word are dropped, and the 20 highest-scoring remaining pairs are outlined."></div>
+            <figcaption><span class="viz-tag">Illustrative</span>A made-up matrix, filtered the same way down to its top 20 pairs</figcaption>
+          </figure>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 5 · FINDINGS ============ -->
+<section class="chapter" id="findings" aria-labelledby="h-findings">
+  <header class="chapter-head">
+    <span class="no">04</span>
+    <h2 id="h-findings">Findings</h2>
+    <img class="rail-art" src="/projects/art/magnifier-cat.png" alt="" loading="lazy">
+  </header>
+  <div class="chapter-body">
+    <figure class="chart" data-reveal aria-labelledby="chart-title">
+      <div class="chart-title">
+        <h3 id="chart-title">Posterior expected revenue, by director group</h3>
+      </div>
+      <div class="bars" style="--max:120">
+        <span class="k" style="--r:1">Miyazaki</span>
+        <span class="track" style="--r:1;--val:104.7"><i></i></span>
+        <b class="v" style="--r:1">$104.7M</b>
+        <span class="k" style="--r:2">Other directors</span>
+        <span class="track row-2" style="--r:2;--val:48.7"><i></i></span>
+        <b class="v" style="--r:2">$48.7M</b>
+        <span class="ref" style="--val:100" aria-hidden="true"><span>prior mean $100M</span></span>
+        <span class="axis" aria-hidden="true"><span style="--val:0">0</span><span style="--val:50">$50M</span><span style="--val:100">$100M</span></span>
+      </div>
+      <figcaption class="chart-note">From the original study: Gamma-Gamma model, prior α = 2, β = 0.02. The dashed line marks the prior mean of $100M; bars start at zero.</figcaption>
+    </figure>
+    <div class="callouts">
+      <aside class="callout" data-reveal>
+        <span aria-hidden="true">✦</span>
+        <p><strong>Similarity is not the same thing as causation.</strong>The goal was a measurable way to explore patterns that could be consistent with influence, not a claim that similarity alone proves where an anime's ideas came from.</p>
+      </aside>
+      <aside class="callout" data-reveal>
+        <span aria-hidden="true">✦</span>
+        <p><strong>Not a search for a single “most Ghibli” anime.</strong>It was a quantitative framework for comparing films, and a way to use those patterns to explore the broader question behind the project.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 · FIGURES (placeholders until the R exports are added) ============ -->
+<section class="chapter" id="figures" aria-labelledby="h-figures" data-src="/projects/data/similarity.json">
+  <header class="chapter-head">
+    <span class="no">05</span>
+    <h2 id="h-figures">Figures</h2>
+  </header>
+  <div class="chapter-body">
+    <p class="fig-intro" data-reveal>All four figures are drawn from the real similarity results: 100 films, compared on 26 features with Gower similarity, rerun from the project's R code and data.</p>
+    <div class="figures" id="figures-data" data-reveal>
+      <figure class="fig wide viz-fig" data-fig="heat">
+        <div class="heat-wrap">
+          <canvas class="heat" role="img" aria-label="Heatmap of Gower similarity between all 100 films. Studio Ghibli's 23 films are grouped first, in an outlined block that is visibly darker than the rest: Ghibli films are more similar to each other than to other studios' films."></canvas>
+          <div class="heat-tip" hidden></div>
+        </div>
+        <div class="heat-key"><span class="hk-g">Studio Ghibli (23)</span><span class="hk-o">Other studios (77)</span><span class="hk-scale"><small>less alike</small><i></i><small>more alike</small></span></div>
+        <figcaption><span class="viz-tag">Real data</span><b>FIG. 1</b> · Similarity between every pair of films. Ghibli's 23 films sit in the red outline, and their block runs darker because they resemble each other. Hover or tap a square to see the pair.</figcaption>
+      </figure>
+      <figure class="fig wide viz-fig" data-fig="pairs">
+        <ol class="pairs"></ol>
+        <figcaption><span class="viz-tag">Real data</span><b>FIG. 2</b> · The 20 most similar pairs, leaving out sequels and series entries that share a first word. <span class="fig-mark">✦</span> both Studio Ghibli.</figcaption>
+      </figure>
+      <figure class="fig viz-fig" data-fig="groups">
+        <h3 class="fig-h">Ghibli films are most alike each other</h3>
+        <ol class="means"></ol>
+        <h3 class="fig-h">Genre mix</h3>
+        <div class="gkey"><span class="gk-g">Ghibli</span><span class="gk-o">Other studios</span></div>
+        <ol class="genres"></ol>
+        <figcaption><span class="viz-tag">Real data</span><b>FIG. 3</b> · Average similarity within and between the groups, and the share of each group's films with each genre tag.</figcaption>
+      </figure>
+      <figure class="fig viz-fig" data-fig="like">
+        <h3 class="fig-h">The most Ghibli-like films from other studios</h3>
+        <ol class="like"></ol>
+        <figcaption><span class="viz-tag">Real data</span><b>FIG. 4</b> · Average similarity to the 23 Ghibli films.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 · REFLECTION ============ -->
+<section class="chapter" id="reflection" aria-labelledby="h-reflection">
+  <header class="chapter-head">
+    <span class="no">06</span>
+    <h2 id="h-reflection">Reflection</h2>
+  </header>
+  <div class="chapter-body">
+    <ol class="learned" data-reveal>
+      <li><span class="n">01</span><p><strong>Data analysis often becomes a data-engineering problem first.</strong> Much of the work was cleaning, matching, reshaping, and validating information from different sources.</p></li>
+      <li><span class="n">02</span><p><strong>Gower distance handles mixed data.</strong> It gave me a way to compare observations containing both numeric and categorical features.</p></li>
+      <li><span class="n">03</span><p><strong>A project can evolve when the first question leads to a more interesting one.</strong> What started as a focused revenue analysis became an exploration of how to quantify similarity across anime.</p></li>
+    </ol>
+    <div class="takeaway" data-reveal>
+      <h3>From a focused Bayesian analysis to a broader research workflow.</h3>
+      <ol class="flow is-plain">
+        <li>Ask about Miyazaki's impact</li><li>Build &amp; clean the data</li><li>Model similarity</li><li>Visualize</li><li>Explore influence</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 · CONTINUE ============ -->
+<nav class="continue" aria-label="More research">
+  <h2 class="vh">Keep reading</h2>
+  <a class="next theme-ai" href="/projects/sports/">
+    <div>
+      <h3>Sports Analytics Research</h3>
+      <p>Cross country running: public performance data from three sources, collected, cleaned, matched, and validated before any statistics.</p>
+      <span class="go">READ RESEARCH 02 <span aria-hidden="true">→</span></span>
+    </div>
+    <span class="art" aria-hidden="true"><img src="/projects/art/run-cat.png" alt="" loading="lazy"></span>
+  </a>
+  <a class="home" href="/">
+    <span class="cat" aria-hidden="true"><img class="body" src="/projects/art/maneki-neko.png" alt=""><img class="paw" src="/projects/art/maneki-neko.png" alt=""><span class="spark s1">✦</span><span class="spark s2">✦</span><span class="spark s3">✧</span></span>
+    <span>BACK HOME</span>
+  </a>
+</nav>
+
+</main>
+
+<footer>
+  <span>© 2026 SARAH WHITAKER</span>
+  <a class="seal small" href="/" aria-label="Home">SW</a>
+  <span><a href="https://github.com/sarahlouisewhitaker">GITHUB</a> · <a href="https://www.linkedin.com/in/sarah-louise-whitaker">LINKEDIN</a></span>
+  <p class="credits">Illustrations by <a href="https://www.irasutoya.com/" lang="ja">いらすとや</a></p>
+</footer>
+</body>
+</html>

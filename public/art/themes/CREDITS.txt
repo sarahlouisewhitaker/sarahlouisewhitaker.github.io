@@ -1,0 +1,13 @@
+Theme art for 16 · Washi 3D (the banner's Mochi, Kissaten and Sunprint themes).
+All illustrations by いらすとや (Irasutoya), free to use under https://www.irasutoya.com/p/terms.html
+Downloaded 2026-10-23 and only resized (sips -Z); tints such as the Sunprint cyanotype and the Mochi greys are CSS filters in themes.css.
+
+kissaten-latte.png              ラテアートのイラスト（カフェ） cafe_art.png                       https://www.irasutoya.com/2013/04/blog-post_14.html
+kissaten-cream-soda.png         クリームソーダのイラスト drink_melonsoda.png                    https://www.irasutoya.com/2013/10/blog-post_6902.html
+kissaten-siphon.png             コーヒーサイフォンのイラスト cafe_siphon.png                    https://www.irasutoya.com/2013/11/blog-post_1820.html
+kissaten-beans.png              コーヒー豆のイラスト cafe_coffee_beans.png                      https://www.irasutoya.com/2013/04/blog-post_17.html
+sunprint-lily-of-the-valley.png すずらんのイラスト（花） flower_suzuran.png                         https://www.irasutoya.com/2013/08/blog-post_923.html
+sunprint-dandelion.png          タンポポの綿毛のイラスト flower_wataboushi.png               https://www.irasutoya.com/2013/08/blog-post_2410.html
+sunprint-seed.png               たんぽぽの綿毛のイラスト（1本） flower_tanpopo_watage_solo.png  https://www.irasutoya.com/2019/06/1.html
+sunprint-foxtail.png            猫じゃらしのイラスト plant_nekojarashi.png              https://www.irasutoya.com/2012/03/blog-post_387.html
+mochi-loaf-cat.png              香箱座りのイラスト（サバトラ） cat_koubakozuwari_gray.png   https://www.irasutoya.com/2019/03/blog-post_538.html

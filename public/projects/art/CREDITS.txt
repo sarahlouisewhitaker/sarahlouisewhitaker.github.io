@@ -1,0 +1,36 @@
+All illustrations by いらすとや (Irasutoya, Takashi Mifune), free to use under
+https://www.irasutoya.com/p/terms.html (check the terms page if the site is ever used commercially).
+The PNGs are unedited apart from resizing (and the one crop noted below); the muted look comes from a CSS filter.
+
+Titles are the original Irasutoya post titles (English in brackets).
+
+Reused from the homepage art folder (../art/), copied here so the project pages stand alone:
+maneki-neko.png  招き猫のイラスト (lucky cat)                         https://www.irasutoya.com/2012/04/blog-post_03.html
+cat-back.png     いろいろな角度から見た猫（後ろ） (cat from behind)          https://www.irasutoya.com/2018/07/blog-post_159.html
+retro-tv.png     昔のブラウン管テレビのイラスト (old CRT television)            (irasutoya.com search: ブラウン管テレビ, "CRT television")
+
+anime-screen.png cropped from キャラクターの描かれた缶バッジのイラスト (badge with a character; badge_character.png); same file as ../art/3d/props/anime-screen.png
+                 https://www.irasutoya.com/2017/05/blog-post_439.html
+
+Downloaded 2026-10-23 for the project pages (file: original Irasutoya name, post, image URL):
+run-cat.png      走る猫のイラスト (running cat; run_cat.png), resized to 720px
+                 https://www.irasutoya.com/2016/01/blog-post_525.html
+                 https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqTfbPOp-qC_kGiQ3n5XYOvN_RxCpbBUzpCh3qIzLLT51-ZTB2gGvRt5N5ItYvorMTwBPQtzPoJccRDaccvwIQK8X3INKqDbgbzo2_v-rxH8U7z920cCWO8PY7-Zm9l-2Aht2aoGmyL6Fy/s800/run_cat.png
+stopwatch.png    ストップウォッチのイラスト (stopwatch; stopwatch.png), resized to 560px
+                 https://www.irasutoya.com/2013/07/blog-post_6430.html
+                 https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfALktBXFm5A7QFVyExrpaJQauav4dleIUjY7xv14bEVDBAYaCeuoBEjJFmWPHzNytrXBuXAfQ5xB-GJ2dh7MZ_Zf8EKVsYRsTSxLV4bC2xoLkLc-9PvpeNflxhhsUoD2kfdd0LIqGjGM/s800/stopwatch.png
+magnifier-cat.png 虫眼鏡を持つ猫のイラスト (cat with a magnifying glass; magnifier_animal_neko.png), resized to 560px
+                 https://www.irasutoya.com/2017/08/blog-post_35.html
+                 https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKvlIVCc9j9QRljMNn0TPI3M6wOKgITRcG82AV3tzjNxDzWBNo0FXQB_j9EkjpLYhCwpUZYxAJ-jrIK2RlyOLLqiNKtvT815NtFX9yPae8MKyAgJUf36p1sViuiTHaVtF6ijDjLIVI5wvT/s800/magnifier_animal_neko.png
+computer-cat.png コンピューターを使う猫のキャラクター (cat using a computer; animal_chara_computer_neko.png), resized to 560px
+                 https://www.irasutoya.com/2018/10/blog-post_67.html
+                 https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhP0-dW2bpyeM4dvokfSaJiYtb93pGBhFq4rRq38V1Iixh3VlABHpV3PvkshwhcfVBVs-omr2PZ298hUK5rCSP12TcSWopgp1XbHOgaQQ1hOGiYYm0PsB26ZGrYoF9IonC_pmmdO2LuCFfB/s800/animal_chara_computer_neko.png
+film-reel.png    フィルムのイラスト（映画） (film reel; eiga_film.png), resized to 560px
+                 https://www.irasutoya.com/2013/09/blog-post_745.html
+                 https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiNES9-1qjYFI09t0DTo3wjFVSbAQVdmIPiYJIkEVzUtK39pjkfD1OkQCBxUsGFWWk0joJgYNvoiZc5sHJfuFieZyuJUCK907ynVnuvaBE1K4RNnvH1q378yilEhRpmnGfWoIks97rHAsCX/s800/eiga_film.png
+
+Where each one is used:
+research-01-ghibli.html   retro-tv + cat-back (hero; anime-screen shows on the TV on hover), film-reel, magnifier-cat, run-cat (next-project card), maneki-neko (home link)
+research-02-sports.html   run-cat (hero), stopwatch, computer-cat, retro-tv + cat-back (previous-project card), maneki-neko (home link)
+
+paper-texture.jpg — "Paper 002" color map by ambientCG (ambientcg.com/view?id=Paper002), resized. Public Domain (CC0).

@@ -1,0 +1,63 @@
+/* "Messy data in. Clear answers out." — the data factory section (see craft.js).
+   Colors and fonts come from the theme tokens, so every theme restyles it. */
+.craft{padding-top:24px}
+.craft-in{text-align:center}
+.craft-title{font-family:var(--font-display,'Shippori Mincho'),serif;font-weight:600;font-size:clamp(32px,4.8vw,54px);line-height:1.12;letter-spacing:.01em;color:var(--ink)}
+.craft-title em{font-style:normal;color:var(--seal)}
+.craft-sub{max-width:540px;margin:18px auto 0;font-size:15px;line-height:1.9;color:var(--sumi)}
+.craft-flow{max-width:960px;margin:28px auto 0}
+.flow-svg{display:block;width:100%;height:auto;overflow:hidden}
+
+/* data */
+.p{fill:currentColor}
+.p.x{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.c0{color:var(--ink);opacity:.55}.c1{color:var(--sumi);opacity:.45}.c2{color:var(--gold);opacity:.85}.c3{color:var(--seal);opacity:.75}
+.pc{fill:var(--seal)}
+.count-num{font-family:var(--font-display,'Shippori Mincho'),serif;font-weight:600;font-size:28px;fill:var(--ink)}
+.flow-label{font-family:var(--font-label,inherit);font-size:11px;letter-spacing:.3em;text-transform:uppercase;fill:var(--sumi)}
+
+/* funnel, belt, chute */
+.funnel-fill{fill:var(--card);opacity:.55}
+.funnel-line{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.funnel-rim{stroke:var(--ink);stroke-width:4;stroke-linecap:round}
+.belt-body{fill:var(--card);stroke:var(--ink);stroke-width:1.6}
+.belt-run{fill:none;stroke:var(--sumi);stroke-width:1.2;stroke-dasharray:5 9;animation:belt .9s linear infinite}
+.roller{fill:var(--paper,#efe7d8);stroke:var(--ink);stroke-width:1.4}
+.chute{stroke:var(--ink);stroke-width:1.6;stroke-dasharray:4 6;animation:belt .9s linear infinite reverse}
+@keyframes belt{to{stroke-dashoffset:-14}}
+
+/* the machine: gears turn, the key winds, the cat leans into it */
+.art{filter:saturate(.6) sepia(.15);transition:filter .5s}
+.craft-flow:hover .art{filter:none}
+.gear{transform-box:fill-box;transform-origin:center;animation:spin var(--d,8s) linear infinite var(--dir,normal)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.key{transform-box:fill-box;transform-origin:center;animation:wind 1.1s ease-in-out infinite}
+@keyframes wind{50%{transform:scaleX(.14)}}
+.worker{transform-box:fill-box;transform-origin:50% 100%;animation:crank 1.1s ease-in-out infinite}
+@keyframes crank{50%{transform:translate(3px,1px) rotate(1.4deg)}}
+.craft-flow.paused :is(.gear,.key,.worker,.belt-run,.chute){animation-play-state:paused}
+
+/* the report card; once stamped it's filed and a fresh one starts */
+.report-g{transition:opacity .6s ease,transform .6s ease}
+.report-g.filed{opacity:0;transform:translateY(-14px)}
+.report-g.reset :is(.ri,.stamp-ink){transition:none}
+.report{fill:var(--card);stroke:var(--line);stroke-width:1.4;filter:drop-shadow(0 10px 14px rgb(0 0 0 / .08))}
+.axis{stroke:var(--line);stroke-width:1.2}
+.ri{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.ri.title{fill:var(--ink)}.ri.sub,.ri.line{fill:var(--sumi);opacity:.45}
+.ri.bar{fill:var(--gold);transform-origin:center bottom;transform:scaleY(0)}.ri.bar.accent{fill:var(--seal)}
+.ri.on{transform:none}
+.stamp-ink{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(1.9) rotate(-18deg);transition:opacity .25s,transform .45s cubic-bezier(.3,1.6,.5,1)}
+.stamp.on .stamp-ink{opacity:.9;transform:rotate(-8deg)}
+.stamp-box{fill:none;stroke:var(--seal);stroke-width:2.2}
+.stamp-text{font-family:var(--font-display,'Shippori Mincho'),serif;font-weight:800;fill:var(--seal)}
+
+/* themes: the art follows each theme's treatment */
+[data-theme="night"] .art{filter:saturate(.7) brightness(.94)}
+[data-theme="mochi"] .art{filter:grayscale(1) contrast(1.04)}
+[data-theme="kissaten"] .art{filter:saturate(.62) sepia(.22) contrast(.96)}
+[data-theme="sunprint"] .art{filter:grayscale(1) sepia(.5) hue-rotate(170deg) saturate(1.3) contrast(.95)}
+[data-theme] .craft-flow:hover .art{filter:none}
+
+@media (max-width:700px){.craft-flow{max-width:420px}.count-num{font-size:26px}.flow-label{font-size:12px}}
+@media (prefers-reduced-motion:reduce){.gear,.key,.worker,.belt-run,.chute{animation:none}.ri,.stamp-ink{transition:none}}

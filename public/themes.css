@@ -1,0 +1,431 @@
+/* Themes for 16 · Washi 3D. The banner at the top re-skins the whole page live.
+   Washi is the default and lives in washi-cats.css (:root) + the page's own <style>; nothing here touches it.
+   Every other theme overrides the same tokens on <html data-theme="…"> and then restyles the page's existing
+   markup: same content and structure (hero, about table, work cards, at a glance, palette, footer, lucky cat),
+   new type, layout, components and art. Theme art is real illustration files in art/themes/ (Irasutoya),
+   loaded through CSS so a theme's pictures only download when that theme is on.
+   The [data-theme] token rules also paint the swatch inside each banner button (<i data-theme="…">).
+   Link this file right after washi-cats.css and before the page's own <style>. */
+
+/* =================================================================== tokens */
+[data-theme="washi"]{--theme-name:"Washi";
+  --paper:#efe7d8;--paper2:#e6dcc8;--card:#f6f0e4;--ink:#1d1a17;--sumi:#4a443d;--seal:#b23a2e;--gold:#b08d57;--line:#cdbfa6;
+  --grain:#00000008;--shade:#1d1a1712;
+  --font-display:'Shippori Mincho', serif;--font-body:'Zen Kaku Gothic New', sans-serif;--font-label:var(--font-body)}
+
+/* 03 Night Shift: lavender on midnight (kept exactly as Sarah approved it) */
+[data-theme="night"]{--theme-name:"Night";
+  --paper:#050507;--paper2:#26262f;--card:#111116;--ink:#ececf1;--sumi:#9a9aa8;--seal:#8b6fe0;--gold:#6b4fd0;--line:#26262f;
+  --grain:#ffffff0d;--shade:#8b6fe024;
+  --font-display:'Inter', sans-serif;--font-body:'Inter', sans-serif;--font-label:'JetBrains Mono', monospace}
+
+/* 01 Mochi: monochrome Bauhaus, the six greys of the original */
+[data-theme="mochi"]{--theme-name:"Mochi";
+  --paper:#f6f4ee;--paper2:#e6e1d7;--card:#e6e1d7;--ink:#111111;--sumi:#333333;--seal:#111111;--gold:#777777;--line:#bebbad;
+  --grain:transparent;--shade:#11111114;
+  --font-display:'Zen Kaku Gothic New', sans-serif;--font-body:'Zen Kaku Gothic New', sans-serif;--font-label:'Space Mono', monospace}
+
+/* 09 Kissaten: milk, cream, latte, mocha and bean (the accent is mocha roasted a shade darker so small text stays readable) */
+[data-theme="kissaten"]{--theme-name:"Kissaten";
+  --paper:#fffaf3;--paper2:#f7ecdc;--card:#ffffff;--ink:#5b3a29;--sumi:#715342;--seal:#96593a;--gold:#b8805f;--line:#e3d2bc;
+  --grain:transparent;--shade:#5b3a2914;
+  --font-display:'Kiwi Maru', serif;--font-body:'Nunito', sans-serif;--font-label:var(--font-body)}
+
+/* 10 Sunprint: dusty cyanotype blue on cream, sage print panels */
+[data-theme="sunprint"]{--theme-name:"Sunprint";
+  --paper:#f4ece0;--paper2:#e9dfd0;--card:#ffffff;--ink:#3b4652;--sumi:#575f67;--seal:#4d6a80;--gold:#8ea6b8;--line:#a9bccb;
+  --blue:#a9bccb;--blue2:#8ea6b8;--sage:#c9d3c7;
+  --grain:#3b465208;--shade:#3b465214;
+  --font-display:'Cormorant Garamond', serif;--font-body:'Josefin Sans', sans-serif;--font-label:var(--font-body)}
+
+/* =================================================================== the banner */
+html:not([data-theme]) .theme-bar{display:none} /* no script, no switcher */
+.theme-bar{position:relative;z-index:3;display:flex;flex-wrap:wrap;align-items:center;column-gap:clamp(14px,2.4vw,28px);row-gap:6px;padding:7px clamp(16px,5vw,64px);background:var(--paper2);border-bottom:1px solid var(--line);font-family:var(--font-label);font-size:10px;font-weight:400;letter-spacing:.28em;line-height:1;text-transform:uppercase;color:var(--sumi)}
+.tb-label{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.tb-label:after{content:'';width:1px;height:14px;margin-left:clamp(4px,1.2vw,14px);background:var(--line)}
+.tb-label b,.tb-copy b{font-weight:400;font-size:12px;letter-spacing:0;color:var(--gold)}
+.tb-list{display:flex;align-items:center;gap:clamp(10px,1.8vw,22px)}
+.tb-theme,.tb-copy{display:inline-flex;align-items:center;gap:9px;margin:0;padding:6px 2px;background:none;border:0;border-radius:0;font:inherit;letter-spacing:inherit;text-transform:uppercase;color:inherit;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.tb-theme{position:relative;transition:color .3s}
+.tb-theme span{position:relative;padding:3px 0}
+.tb-theme span:after{content:'';position:absolute;left:0;right:.28em;bottom:-1px;height:1px;background:var(--seal);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+/* each swatch: its paper, its accent and its ink, cut like the CALICO coat in the palette */
+.tb-sw{display:block;flex:none;width:14px;height:14px;border-radius:50%;border:1px solid var(--line);background:linear-gradient(135deg,var(--paper) 0 46%,var(--seal) 46% 72%,var(--ink) 72%);transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+.tb-theme:hover{color:var(--ink)}
+.tb-theme:hover .tb-sw{transform:translateY(-2px) rotate(-20deg)}
+.tb-theme:hover span:after{transform:scaleX(1)}
+/* the active theme (driven by <html data-theme>, so it is right from the first paint) */
+[data-theme="washi"] .tb-theme[data-pick="washi"],[data-theme="mochi"] .tb-theme[data-pick="mochi"],[data-theme="kissaten"] .tb-theme[data-pick="kissaten"],[data-theme="sunprint"] .tb-theme[data-pick="sunprint"],[data-theme="night"] .tb-theme[data-pick="night"]{color:var(--ink);cursor:default}
+:is([data-theme="washi"] [data-pick="washi"],[data-theme="mochi"] [data-pick="mochi"],[data-theme="kissaten"] [data-pick="kissaten"],[data-theme="sunprint"] [data-pick="sunprint"],[data-theme="night"] [data-pick="night"]) .tb-sw{box-shadow:0 0 0 2px var(--paper2),0 0 0 3px var(--ink)}
+:is([data-theme="washi"] [data-pick="washi"],[data-theme="mochi"] [data-pick="mochi"],[data-theme="kissaten"] [data-pick="kissaten"],[data-theme="sunprint"] [data-pick="sunprint"],[data-theme="night"] [data-pick="night"]) span:after{transform:scaleX(1)}
+.tb-now{display:none;color:var(--ink);white-space:nowrap}
+.tb-now:after{content:var(--theme-name)}
+.tb-copy{margin-left:auto;padding:6px 0;color:var(--ink)}
+.tb-copy span{border-bottom:1px solid var(--ink);padding:3px 0}
+.tb-copy b{display:inline-block;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.tb-copy:hover b{transform:rotate(72deg) scale(1.2)}
+.tb-copy.copied b{animation:tb-pop .9s cubic-bezier(.3,1.5,.5,1)}
+@keyframes tb-pop{35%{transform:scale(1.7) rotate(110deg)}100%{transform:rotate(180deg)}}
+.theme-bar :focus-visible{outline-offset:3px}
+@media(max-width:760px){
+  .theme-bar{column-gap:12px;letter-spacing:.2em}
+  .tb-label{display:none}
+  .tb-list{gap:4px}
+  .tb-theme{padding:6px}
+  .tb-sw{width:16px;height:16px}
+  .tb-theme span{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .tb-now{display:block}
+  .tb-copy b{display:none}
+}
+@media(min-width:761px) and (max-width:960px){.tb-label{display:none}} /* wide fonts need the room */
+@media(max-width:360px){
+  .theme-bar{column-gap:10px;letter-spacing:.12em}
+  .tb-list{gap:0}
+  .tb-theme{padding:5px}
+  .tb-sw{width:14px;height:14px}
+}
+
+/* =================================================================== switching */
+/* a soft cross-fade (View Transitions), or a color fade where those aren't supported; none with reduced motion */
+::view-transition-old(root),::view-transition-new(root){animation-duration:.5s;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+html.theme-fading,html.theme-fading *,html.theme-fading *::before,html.theme-fading *::after{transition:color .5s,background-color .5s,border-color .5s,outline-color .5s,box-shadow .5s!important}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+/* =================================================================== every theme but Washi */
+/* the speech bubble and the shadow under the travelling cat follow the theme */
+[data-theme]:not([data-theme="washi"]) #bubble{background:var(--card);font-family:var(--font-display);box-shadow:0 8px 18px -12px var(--shade)}
+[data-theme]:not([data-theme="washi"]) #companion:not(.docked):after{background:var(--shade)}
+
+/* =================================================================== Night (03) */
+[data-theme="night"] body{background-size:24px 24px} /* a sparse star grid instead of paper grain */
+[data-theme="night"] .seal{border-radius:10px;font-weight:600}
+[data-theme="night"] :is(.work,.box){border-radius:12px}
+[data-theme="night"] .opts span{border-color:var(--seal);border-radius:99px;color:#d9d0ff}
+[data-theme="night"] :is(.cat,.flat) img,[data-theme="night"] #companion canvas{filter:saturate(.7) brightness(.94)}
+[data-theme="night"] .work .art{filter:grayscale(1) brightness(1.4);opacity:.4}
+[data-theme="night"] .sw i{box-shadow:0 0 0 1px #ffffff14}
+/* card text runs around the corner art (Inter is wider than Shippori, so a title can end beside the picture) */
+[data-theme="night"] .work:before{content:'';float:right;width:116px;height:96px}
+[data-theme="night"] .work :is(h3,.meta){padding-right:0}
+@media(max-width:760px){[data-theme="night"] .work:before{width:80px;height:62px}}
+
+/* =================================================================== Mochi (01)
+   Monochrome Bauhaus: a big left-aligned "Sarah / Whitaker", Space Mono numbered labels, ruled sections,
+   cards as columns between thin rules, outlined gauges, pill chips, a round SW logo, and a grey loaf cat
+   (香箱座り, the most mochi-shaped cat) sitting on the footer rule. All art in greys until you hover. */
+[data-theme="mochi"] body{counter-reset:mochi}
+[data-theme="mochi"] nav{padding:28px clamp(16px,5vw,64px)}
+[data-theme="mochi"] nav a{margin-left:24px;font-family:var(--font-body);font-size:14px;letter-spacing:0;text-transform:lowercase}
+[data-theme="mochi"] nav a:after{bottom:-4px;height:1.5px;background:var(--ink);transform-origin:right;transition:transform .35s}
+[data-theme="mochi"] nav a:hover:after,[data-theme="mochi"] nav a.here:after{transform-origin:left}
+[data-theme="mochi"] .seal{width:38px;height:38px;border-width:1.5px;border-radius:50%;font-family:var(--font-label);font-weight:400;font-size:12px;transform:none;transition:transform .5s cubic-bezier(.3,1.6,.5,1),background .3s,color .3s}
+[data-theme="mochi"] .seal:hover{transform:rotate(360deg);background:var(--ink);color:var(--paper)}
+/* hero: name on the left, the lucky cat on a pale disc on the right */
+[data-theme="mochi"] .hero{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);grid-template-areas:"tag art" "name art";align-items:end;column-gap:clamp(24px,5vw,72px);row-gap:20px;min-height:0;padding:clamp(24px,4vw,48px) clamp(16px,5vw,64px) 80px}
+[data-theme="mochi"] .center{display:contents}
+[data-theme="mochi"] .tate{display:none}
+[data-theme="mochi"] .tate:first-child{display:block;grid-area:tag;height:auto;writing-mode:horizontal-tb;text-align:left;font-family:var(--font-label);font-size:11px;letter-spacing:.2em}
+[data-theme="mochi"] .cat{grid-area:art;justify-self:center;align-self:center;width:clamp(150px,20vw,230px)}
+[data-theme="mochi"] .cat:before{content:'';position:absolute;left:50%;top:50%;width:122%;aspect-ratio:1;border-radius:50%;background:var(--card);transform:translate(-50%,-48%);z-index:-1}
+[data-theme="mochi"] .name{grid-area:name;display:flex;flex-direction:column;align-items:flex-start;margin:0;text-align:left}
+[data-theme="mochi"] .name h1{width:min-content;font-size:clamp(54px,8.6vw,112px);font-weight:900;line-height:.98;letter-spacing:-.02em;text-transform:none}
+[data-theme="mochi"] .name h1::first-line{font-weight:400}
+[data-theme="mochi"] .name .rule{order:1;height:2px;margin:30px 0 26px;background:var(--ink);animation-name:mochi-rule}
+@keyframes mochi-rule{to{width:40px}}
+[data-theme="mochi"] .name p{order:2;margin:0;font-size:11px;letter-spacing:.2em}
+[data-theme="mochi"] .name:after{content:'';order:3;width:8px;height:8px;margin-top:22px;border-radius:50%;background:var(--ink);box-shadow:14px 0 var(--gold),28px 0 var(--line)}
+/* sections: a stone rule between each, numbered mono labels on the left */
+[data-theme="mochi"] section{border-top:1px solid var(--line);padding-top:64px!important;padding-bottom:64px}
+[data-theme="mochi"] .label,[data-theme="mochi"] #about:before{display:block;text-align:left;font-family:var(--font-label);font-size:11px;letter-spacing:.2em;color:var(--sumi)}
+[data-theme="mochi"] #about:before{counter-increment:mochi;content:counter(mochi,decimal-leading-zero) " — ABOUT";margin-bottom:28px}
+[data-theme="mochi"] .label{counter-increment:mochi}
+[data-theme="mochi"] .label:before{content:counter(mochi,decimal-leading-zero) " — "}
+[data-theme="mochi"] .divider{display:none}
+[data-theme="mochi"] .wrap{max-width:1040px;margin:28px 0 0} /* left-aligned, and clear of the corner where the lucky cat travels */
+[data-theme="mochi"] .facts{max-width:720px;margin:0}
+[data-theme="mochi"] .facts li{grid-template-columns:16px 170px minmax(0,1fr);column-gap:12px}
+[data-theme="mochi"] .facts li:before{grid-column:1;content:'•';font-size:13px;color:var(--ink)}
+[data-theme="mochi"] .facts .k{grid-column:2}
+[data-theme="mochi"] .facts .v{grid-column:3}
+/* work: columns between thin rules, no boxes */
+[data-theme="mochi"] .works{gap:0;margin-left:-28px;margin-right:-28px}
+[data-theme="mochi"] .work{padding:24px 28px 28px;background:none;border:0;border-left:1px solid var(--line);transition:background .35s}
+[data-theme="mochi"] .work:first-child{border-left:0}
+[data-theme="mochi"] .work:hover{transform:none;background:var(--card)}
+[data-theme="mochi"] .work .art{top:24px;right:28px;width:64px;height:64px;opacity:.6;filter:grayscale(1);transform:none}
+[data-theme="mochi"] .work :is(h3,.meta){padding-right:84px}
+[data-theme="mochi"] .work .meta{font-size:11px;color:var(--sumi)}
+[data-theme="mochi"] .work h3{margin:10px 0 8px;font-size:28px;font-weight:700;line-height:1.25}
+[data-theme="mochi"] .work .go{border:0;font-size:12px;letter-spacing:.05em;text-transform:lowercase;transition:transform .3s}
+[data-theme="mochi"] .work:hover .go{transform:translateX(10px)}
+/* at a glance: two plain columns, outlined gauges, pill chips */
+[data-theme="mochi"] .panel{grid-template-columns:1.2fr .8fr;gap:56px}
+[data-theme="mochi"] .box{padding:0;background:none;border:0}
+[data-theme="mochi"] .box h3{margin-bottom:6px;font-family:var(--font-label);font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--sumi)}
+[data-theme="mochi"] .lvl{grid-template-columns:120px 1fr 34px;margin-top:16px}
+[data-theme="mochi"] .lvl .bar{height:12px;border:1.5px solid var(--ink);border-radius:9px;background:none;overflow:hidden}
+[data-theme="mochi"] .lvl .bar i:after{display:none}
+[data-theme="mochi"] .lvl:hover .bar i{background:repeating-linear-gradient(-45deg,var(--ink) 0 6px,var(--sumi) 6px 12px)}
+[data-theme="mochi"] .lvl b{font-family:var(--font-label);font-size:12px;font-weight:400}
+[data-theme="mochi"] .row{padding:12px 0}
+[data-theme="mochi"] .opts span{padding:4px 14px;border-radius:99px;font-size:13px}
+/* palette: big circles that square off and tilt on hover */
+[data-theme="mochi"] .coats2{justify-content:flex-start;gap:20px}
+[data-theme="mochi"] .sw{width:62px;text-align:left}
+[data-theme="mochi"] .sw i{width:56px;height:56px;margin:0 0 10px}
+[data-theme="mochi"] .sw:hover i{border-radius:12px;transform:translateY(-6px) rotate(8deg)}
+/* footer: the loaf cat sits on the rule */
+[data-theme="mochi"] footer{position:relative;margin-top:48px}
+[data-theme="mochi"] footer:before{content:'';position:absolute;left:clamp(16px,5vw,64px);bottom:100%;width:86px;height:79px;margin-bottom:-7px;background:url(art/themes/mochi-loaf-cat.png) center bottom/contain no-repeat;filter:grayscale(1) contrast(1.05);transition:filter .5s}
+[data-theme="mochi"] footer:hover:before{filter:none}
+[data-theme="mochi"] .toast{border-radius:99px;letter-spacing:.05em}
+/* greys until you hover */
+[data-theme="mochi"] :is(.cat,.flat) img,[data-theme="mochi"] #companion canvas{filter:grayscale(1) contrast(1.04)}
+@media(prefers-reduced-motion:reduce){[data-theme="mochi"] .name .rule{width:40px}}
+@media(max-width:760px){
+  [data-theme="mochi"] nav a{margin-left:16px}
+  [data-theme="mochi"] .hero{grid-template-columns:1fr;grid-template-areas:"tag" "name" "art";row-gap:14px;padding:28px 16px 56px}
+  [data-theme="mochi"] .cat{justify-self:end;width:150px;margin:-24px 18px 0 0}
+  [data-theme="mochi"] .facts li{grid-template-columns:14px 112px minmax(0,1fr);column-gap:8px}
+  [data-theme="mochi"] .works{margin-left:0;margin-right:0}
+  [data-theme="mochi"] .work{padding:24px 0;border-left:0;border-top:1px solid var(--line)}
+  [data-theme="mochi"] .work:first-child{border-top:0}
+  [data-theme="mochi"] .work .art{right:0;width:56px;height:56px}
+  [data-theme="mochi"] .work :is(h3,.meta){padding-right:68px}
+  [data-theme="mochi"] .work h3{font-size:24px}
+  [data-theme="mochi"] .panel{grid-template-columns:1fr;gap:40px}
+  [data-theme="mochi"] .lvl{grid-template-columns:96px 1fr 30px}
+  [data-theme="mochi"] .coats2{gap:16px}
+}
+
+/* =================================================================== Kissaten (09)
+   A coffee house: a cream awning with a rounded hem over the nav and hero, a latte beside the lucky cat,
+   the about table as a preferences card with coffee-bean bullets, the work as menu rows (cream soda,
+   siphon coffee), barista's-note cards with rounded bars and mocha pills, coffee-cup swatches. */
+[data-theme="kissaten"] nav{padding:18px clamp(16px,5vw,56px);background:var(--paper2);font-family:var(--font-body);font-size:14px;font-weight:600;letter-spacing:.02em}
+[data-theme="kissaten"] nav a{margin-left:6px;padding:6px 12px;border-radius:99px;text-transform:lowercase;transition:background .3s}
+[data-theme="kissaten"] nav a:hover,[data-theme="kissaten"] nav a.here{background:var(--line)}
+[data-theme="kissaten"] nav a:after{display:none}
+[data-theme="kissaten"] .seal{border-radius:14px;font-weight:500}
+[data-theme="kissaten"] .hero{grid-template-columns:1fr;grid-template-areas:"art" "tag" "name";justify-items:center;row-gap:0;min-height:0;padding:20px 16px 72px;background:var(--paper2);border-radius:0 0 50% 50%/0 0 60px 60px}
+[data-theme="kissaten"] .center{display:contents}
+[data-theme="kissaten"] .tate{display:none}
+[data-theme="kissaten"] .tate:first-child{display:block;grid-area:tag;height:auto;margin-top:22px;writing-mode:horizontal-tb;font-size:15px;letter-spacing:.04em;text-transform:lowercase;color:var(--seal)}
+[data-theme="kissaten"] .tate:first-child::first-letter{text-transform:uppercase}
+[data-theme="kissaten"] .cat{grid-area:art;margin-right:clamp(70px,9vw,118px)}
+[data-theme="kissaten"] .cat:before{content:'';position:absolute;left:94%;bottom:-1%;width:64%;aspect-ratio:417/480;background:url(art/themes/kissaten-latte.png) center bottom/contain no-repeat;transform:rotate(5deg);transform-origin:50% 100%;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+[data-theme="kissaten"] .cat:hover:before{transform:rotate(-5deg) translateY(-6px)}
+[data-theme="kissaten"] .name{grid-area:name;margin-top:8px;text-align:center}
+[data-theme="kissaten"] .name h1{font-family:var(--font-body);font-size:clamp(34px,5vw,52px);font-weight:800;line-height:1.1;letter-spacing:0;text-transform:none}
+[data-theme="kissaten"] .name p{margin-top:12px;font-size:12px;font-weight:600;letter-spacing:.25em}
+[data-theme="kissaten"] .name .rule{background:var(--gold);height:2px;border-radius:2px}
+/* about: a preferences card */
+[data-theme="kissaten"] #about{padding-top:64px!important}
+[data-theme="kissaten"] .facts{max-width:720px;padding:8px 24px;background:var(--paper2);border:0;border-radius:24px}
+[data-theme="kissaten"] .facts li{grid-template-columns:22px auto minmax(0,1fr);column-gap:14px;padding:15px 0;border-bottom:1px dashed var(--line);font-size:15px}
+[data-theme="kissaten"] .facts li:last-child{border-bottom:0}
+[data-theme="kissaten"] .facts li:hover{border-color:var(--line)}
+[data-theme="kissaten"] .facts li:before{grid-column:1;content:'';width:22px;height:16px;background:url(art/themes/kissaten-beans.png) center/contain no-repeat}
+[data-theme="kissaten"] .facts li:after{inset:0 -12px;border-radius:12px}
+[data-theme="kissaten"] .facts .k{grid-column:2;font-size:15px;font-weight:700;letter-spacing:0;text-transform:lowercase;color:var(--ink)}
+[data-theme="kissaten"] .facts .k::first-letter{text-transform:uppercase}
+[data-theme="kissaten"] .facts li:hover .k{letter-spacing:0;color:var(--seal)}
+[data-theme="kissaten"] .facts .v{grid-column:3;justify-self:end;text-align:right}
+[data-theme="kissaten"] .facts li:hover .v{transform:translateX(-6px)}
+/* section headings with café flavor (the real label stays in the page for screen readers) */
+[data-theme="kissaten"] section .label{font-size:0;letter-spacing:0;line-height:1;color:var(--ink)}
+[data-theme="kissaten"] section .label:before{display:block;font-family:var(--font-display);font-size:19px;line-height:1.3}
+[data-theme="kissaten"] #work .label:before{content:"Today's research";content:"Today's research" / ""}
+[data-theme="kissaten"] #glance .label:before{content:"Barista's notes";content:"Barista's notes" / ""}
+[data-theme="kissaten"] #palette .label:before{content:"House blend";content:"House blend" / ""}
+[data-theme="kissaten"] #palette .label:after{content:"coffee flavors · click a cup to copy";content:"coffee flavors · click a cup to copy" / "";display:block;margin-top:6px;font-size:13px;line-height:1.3;color:var(--sumi)}
+[data-theme="kissaten"] .divider{display:none}
+[data-theme="kissaten"] .wrap{max-width:720px;margin-top:16px}
+/* work: menu rows */
+[data-theme="kissaten"] .works{grid-template-columns:1fr;gap:0}
+[data-theme="kissaten"] .work{display:grid;grid-template-columns:68px minmax(0,1fr) auto;grid-template-areas:"art meta go" "art h3 go" "art p go";column-gap:20px;align-items:center;padding:20px 8px;background:none;border:0;border-bottom:1px solid var(--line);border-radius:12px;overflow:visible;transition:padding .3s,background .3s}
+[data-theme="kissaten"] .work:hover{transform:none;padding-left:20px;background:var(--paper2)}
+[data-theme="kissaten"] .work .art{display:none}
+[data-theme="kissaten"] .work:before{content:'';grid-area:art;width:68px;height:68px;background:center/contain no-repeat;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+[data-theme="kissaten"] .work:nth-child(1):before{background-image:url(art/themes/kissaten-cream-soda.png)}
+[data-theme="kissaten"] .work:nth-child(2):before{background-image:url(art/themes/kissaten-siphon.png)}
+[data-theme="kissaten"] .work:hover:before{transform:rotate(-12deg) scale(1.1)}
+[data-theme="kissaten"] .work .meta{grid-area:meta;padding:0;font-size:11px;letter-spacing:.2em}
+[data-theme="kissaten"] .work h3{grid-area:h3;margin:3px 0 4px;padding:0;font-family:var(--font-body);font-size:18px;font-weight:800;line-height:1.35}
+[data-theme="kissaten"] .work p{grid-area:p;font-size:13.5px;line-height:1.65}
+[data-theme="kissaten"] .work .go{grid-area:go;margin:0;border:0;font-size:0;gap:0}
+[data-theme="kissaten"] .work .go:after{content:"›";content:"›" / "";font-family:var(--font-body);font-size:26px;line-height:1;color:var(--ink);transition:transform .3s}
+[data-theme="kissaten"] .work:hover .go:after{transform:translateX(6px)}
+/* at a glance: the levels card and the preferences card */
+[data-theme="kissaten"] .panel{grid-template-columns:1fr;gap:24px}
+[data-theme="kissaten"] .box{padding:24px;border-radius:24px}
+[data-theme="kissaten"] .box.levels{background:var(--card);border:1.5px solid var(--line)}
+[data-theme="kissaten"] .box:not(.levels){background:var(--paper2);border:0}
+[data-theme="kissaten"] .box h3{margin-bottom:6px;font-size:18px;font-weight:500}
+[data-theme="kissaten"] .lvl{grid-template-columns:96px 1fr 36px;gap:12px;font-size:12px;font-weight:600;letter-spacing:.12em}
+[data-theme="kissaten"] .lvl .bar,[data-theme="kissaten"] .lvl .bar i{height:12px;border-radius:99px}
+[data-theme="kissaten"] .lvl .bar{background:var(--paper2);overflow:hidden}
+[data-theme="kissaten"] .lvl .bar i{background:var(--gold)}
+[data-theme="kissaten"] .lvl:hover .bar i{background:var(--ink)}
+[data-theme="kissaten"] .lvl .bar i:after{display:none}
+[data-theme="kissaten"] .lvl b{font-family:var(--font-body);font-size:15px;font-weight:800}
+[data-theme="kissaten"] .levels .note{font-size:12px;letter-spacing:.08em}
+[data-theme="kissaten"] .row{padding:14px 0;border-bottom:1px dashed var(--line)}
+[data-theme="kissaten"] .row:last-child{border-bottom:0}
+[data-theme="kissaten"] .row>span{font-size:15px;font-weight:700;letter-spacing:0;text-transform:lowercase;color:var(--ink)}
+[data-theme="kissaten"] .row>span::first-letter{text-transform:uppercase}
+[data-theme="kissaten"] .opts{gap:8px}
+[data-theme="kissaten"] .opts span,[data-theme="kissaten"] .box:hover .opts span{padding:6px 12px;border:1.5px solid var(--gold);border-radius:99px;transition:background .2s,color .2s,border-color .2s}
+[data-theme="kissaten"] .opts span:hover{background:var(--seal);border-color:var(--seal);color:var(--card)}
+/* palette: coffee cups */
+[data-theme="kissaten"] .coats2{gap:20px 14px}
+[data-theme="kissaten"] .sw{width:72px;font-size:12px;letter-spacing:.04em;text-transform:lowercase;color:var(--ink)}
+[data-theme="kissaten"] .sw small{text-transform:none;letter-spacing:.1em}
+[data-theme="kissaten"] .sw i{position:relative;width:52px;height:44px;margin:0 auto 10px;border:2px solid var(--ink);border-radius:4px 4px 22px 22px}
+[data-theme="kissaten"] .sw i:after{content:'';position:absolute;right:-11px;top:8px;width:9px;height:16px;border:2px solid var(--ink);border-left:0;border-radius:0 10px 10px 0}
+[data-theme="kissaten"] .sw:hover i{border-radius:4px 4px 22px 22px;transform:translateY(-6px) rotate(-8deg)}
+/* footer: the awning again, upside down */
+[data-theme="kissaten"] footer{margin-top:40px;background:var(--paper2);border-top:0;border-radius:50% 50% 0 0/60px 60px 0 0;padding-top:48px;font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.04em}
+[data-theme="kissaten"] footer>span a{padding:5px 10px;border-radius:99px;text-decoration:none;transition:background .3s}
+[data-theme="kissaten"] footer>span a:hover{background:var(--line)}
+[data-theme="kissaten"] .toast{border-radius:99px;font-size:13px;letter-spacing:.05em}
+[data-theme="kissaten"] :is(.cat,.flat) img,[data-theme="kissaten"] #companion canvas{filter:saturate(.62) sepia(.22) contrast(.96)}
+@media(max-width:760px){
+  [data-theme="kissaten"] nav a{margin-left:0;padding:6px 8px;font-size:13px}
+  [data-theme="kissaten"] .hero{padding:24px 16px 64px;border-radius:0 0 50% 50%/0 0 40px 40px}
+  [data-theme="kissaten"] .cat{width:136px;margin-right:84px}
+  [data-theme="kissaten"] .facts{padding:6px 18px}
+  [data-theme="kissaten"] .facts li{grid-template-columns:20px auto minmax(0,1fr);column-gap:10px;font-size:14px}
+  [data-theme="kissaten"] .facts .k{font-size:14px}
+  [data-theme="kissaten"] .work{grid-template-columns:52px minmax(0,1fr) auto;column-gap:14px;padding:18px 4px}
+  [data-theme="kissaten"] .work:hover{padding-left:10px}
+  [data-theme="kissaten"] .work:before{width:52px;height:52px}
+  [data-theme="kissaten"] .work h3{font-size:16px}
+  [data-theme="kissaten"] .box{padding:20px}
+  [data-theme="kissaten"] .lvl{grid-template-columns:84px 1fr 30px}
+  [data-theme="kissaten"] footer{border-radius:50% 50% 0 0/40px 40px 0 0}
+}
+
+/* =================================================================== Sunprint (10)
+   Cyanotype: a dusty-blue band behind the nav and hero, printed with white botanicals (real Irasutoya
+   flowers turned into silhouettes with a filter), drifting dandelion seeds, a wide-spaced serif name,
+   the about table beside a foxtail-grass print, work cards with a printed image on top that "develops"
+   into color on hover, boxed links. */
+[data-theme="sunprint"] body{font-weight:300}
+[data-theme="sunprint"] nav{position:absolute;left:0;right:0;z-index:4;font-size:12px;letter-spacing:.25em}
+[data-theme="sunprint"] nav a{margin-left:24px;transition:letter-spacing .3s,background .3s,color .3s}
+[data-theme="sunprint"] nav a:hover{letter-spacing:.4em}
+[data-theme="sunprint"] nav a:after{background:var(--ink)}
+[data-theme="sunprint"] nav a[href*="linkedin"]{padding:8px 14px;border:1px solid var(--ink)}
+[data-theme="sunprint"] nav a[href*="linkedin"]:after{display:none}
+[data-theme="sunprint"] nav a[href*="linkedin"]:hover{background:var(--ink);color:var(--paper)}
+[data-theme="sunprint"] .seal{border-width:1.5px;border-radius:2px;font-weight:600}
+[data-theme="sunprint"] .hero{grid-template-columns:1fr;place-items:center;overflow:hidden;min-height:clamp(480px,76vh,700px);padding:128px 16px 72px;
+  background:radial-gradient(#ffffff2e 1px,transparent 1px) 0 0/4px 4px,radial-gradient(ellipse at 78% 30%,#ffffff8c 0,transparent 46%),linear-gradient(180deg,var(--blue),var(--blue2))}
+[data-theme="sunprint"] .hero:before,[data-theme="sunprint"] .hero:after{content:'';position:absolute;bottom:-2%;pointer-events:none;background:center bottom/contain no-repeat;filter:brightness(0) invert(1);opacity:.9;transition:transform 1.2s}
+[data-theme="sunprint"] .hero:before{left:-1%;width:clamp(170px,31vw,410px);height:84%;background-image:url(art/themes/sunprint-lily-of-the-valley.png);background-position:left bottom;transform-origin:left bottom}
+[data-theme="sunprint"] .hero:after{right:-2%;width:clamp(150px,27vw,350px);height:74%;background-image:url(art/themes/sunprint-dandelion.png);background-position:right bottom;transform-origin:right bottom}
+[data-theme="sunprint"] .hero:hover:before{transform:rotate(-2deg)}
+[data-theme="sunprint"] .hero:hover:after{transform:rotate(2deg)}
+/* the two side texts become dandelion seeds drifting over the band (still read out by screen readers) */
+[data-theme="sunprint"] .tate{display:block;position:absolute;width:24px;height:27px;font-size:0;letter-spacing:0;background:url(art/themes/sunprint-seed.png) center/contain no-repeat;filter:brightness(0) invert(1);opacity:.85;animation:sp-drift 7s ease-in-out infinite alternate}
+[data-theme="sunprint"] .tate:first-child{left:63%;top:30%}
+[data-theme="sunprint"] .tate:last-child{left:73%;top:52%;width:17px;height:19px;animation-duration:9s;animation-delay:-3s}
+@keyframes sp-drift{from{transform:translate(0,0) rotate(-16deg)}to{transform:translate(16px,-12px) rotate(8deg)}}
+[data-theme="sunprint"] .cat{width:clamp(130px,13vw,170px)}
+[data-theme="sunprint"] .name{margin-top:28px}
+[data-theme="sunprint"] .name h1{padding-left:.24em;font-size:clamp(30px,5vw,58px);font-weight:500;line-height:1.15;letter-spacing:.24em;color:#2a3440} /* a deeper slate on the band keeps small text above 4.5:1 */
+[data-theme="sunprint"] .name p{margin-top:12px;font-size:12px;font-weight:400;letter-spacing:.35em;color:#2a3440}
+[data-theme="sunprint"] .name .rule{height:2px;background:#2a3440}
+/* section labels: small caps with a short ink rule under them */
+[data-theme="sunprint"] .label{font-size:13px;font-weight:400;letter-spacing:.3em;color:var(--ink)}
+[data-theme="sunprint"] .divider{gap:0;margin-top:12px;font-size:0}
+[data-theme="sunprint"] .divider i{width:28px;background:var(--ink)}
+[data-theme="sunprint"] .divider i+i{display:none}
+/* about: a foxtail-grass print on sage beside the fact list */
+[data-theme="sunprint"] #about{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:0!important}
+[data-theme="sunprint"] #about:before{content:'';min-height:360px;background:linear-gradient(160deg,var(--sage),#a8b6a4)}
+[data-theme="sunprint"] #about:after{content:'';position:absolute;left:0;top:0;bottom:0;width:50%;background:url(art/themes/sunprint-foxtail.png) 58% 60%/auto 70% no-repeat;filter:brightness(0) invert(1);opacity:.78;pointer-events:none}
+[data-theme="sunprint"] .facts{display:flex;flex-direction:column;justify-content:center;max-width:none;margin:0;padding:48px clamp(16px,5vw,56px);background:#fbf8f3;border:0}
+[data-theme="sunprint"] .facts:before{content:"About";margin-bottom:18px;font-size:16px;font-weight:400;letter-spacing:.3em;text-transform:uppercase}
+[data-theme="sunprint"] .facts li{grid-template-columns:18px 120px minmax(0,1fr);column-gap:12px;max-width:440px;font-weight:400}
+[data-theme="sunprint"] .facts li:first-of-type{border-top:1px solid var(--line)}
+[data-theme="sunprint"] .facts li:before{grid-column:1;color:var(--seal)}
+[data-theme="sunprint"] .facts .k{grid-column:2}
+[data-theme="sunprint"] .facts .v{grid-column:3}
+[data-theme="sunprint"] #work{padding-top:88px!important}
+/* work: white cards with a printed panel on top; hover develops the print into color */
+[data-theme="sunprint"] .works{max-width:900px;gap:24px}
+[data-theme="sunprint"] .work{padding:186px 22px 28px;text-align:center;background:var(--card);border:0;box-shadow:0 18px 30px -24px #3b465288;transition:transform .4s,box-shadow .4s}
+[data-theme="sunprint"] .work:hover{transform:translateY(-8px);box-shadow:0 28px 40px -24px #3b4652aa}
+[data-theme="sunprint"] .work:before{content:'';position:absolute;left:0;right:0;top:0;height:158px;background:radial-gradient(#ffffff2e 1px,transparent 1px) 0 0/4px 4px,linear-gradient(160deg,var(--blue),var(--blue2))}
+[data-theme="sunprint"] .work:nth-child(2):before{background:radial-gradient(#ffffff2e 1px,transparent 1px) 0 0/4px 4px,linear-gradient(160deg,var(--sage),#a8b6a4)}
+[data-theme="sunprint"] .work .art{top:16px;left:50%;right:auto;width:126px;height:126px;margin-left:-63px;opacity:.92;filter:brightness(0) invert(1);transform:none;transition:filter .9s,transform .8s,opacity .5s}
+[data-theme="sunprint"] .work:hover .art{opacity:1;filter:brightness(1) invert(0);transform:scale(1.07)}
+[data-theme="sunprint"] .work :is(h3,.meta){padding-right:0}
+[data-theme="sunprint"] .work .meta{display:block;font-size:11px;font-weight:400;letter-spacing:.3em}
+[data-theme="sunprint"] .work .meta:before{content:'';display:block;width:18px;height:1px;margin:0 auto 14px;background:var(--ink);transition:width .4s}
+[data-theme="sunprint"] .work:hover .meta:before{width:60px}
+[data-theme="sunprint"] .work h3{margin:8px 0 10px;font-size:28px;font-style:italic;font-weight:500;line-height:1.2}
+[data-theme="sunprint"] .work p{font-size:14px;line-height:1.7}
+[data-theme="sunprint"] .work .go{font-weight:400;letter-spacing:.25em}
+/* at a glance: white cards, fine bars, chips that fill from below */
+[data-theme="sunprint"] .box{background:var(--card);border:0;box-shadow:0 18px 30px -24px #3b465288}
+[data-theme="sunprint"] .box h3{font-size:22px;font-weight:500}
+[data-theme="sunprint"] .lvl{font-weight:400}
+[data-theme="sunprint"] .lvl .bar{height:4px}
+[data-theme="sunprint"] .lvl .bar i:after{top:-4px;width:1px;height:12px}
+[data-theme="sunprint"] .lvl b{font-size:17px}
+[data-theme="sunprint"] .opts span{position:relative;z-index:0;overflow:hidden;border-color:var(--ink);font-weight:400;transition:color .4s}
+[data-theme="sunprint"] .opts span:before{content:'';position:absolute;inset:0;z-index:-1;background:var(--ink);transform:translateY(101%);transition:transform .4s}
+[data-theme="sunprint"] .opts span:hover{color:var(--paper)}
+[data-theme="sunprint"] .opts span:hover:before{transform:none}
+[data-theme="sunprint"] .sw{font-weight:400}
+/* footer: "say hello" with boxed links, on sand */
+[data-theme="sunprint"] footer{flex-direction:column;gap:18px;padding:56px 16px 28px;text-align:center;background:var(--paper2);border-top:0;font-size:11px;letter-spacing:.3em}
+[data-theme="sunprint"] footer .seal{order:-2}
+[data-theme="sunprint"] footer>span:nth-of-type(3){order:-1;font-size:0}
+[data-theme="sunprint"] footer>span:nth-of-type(3) a{position:relative;z-index:0;display:inline-block;margin:6px;padding:10px 24px;overflow:hidden;border:1px solid var(--ink);font-size:12px;letter-spacing:.25em;text-decoration:none;transition:color .4s}
+[data-theme="sunprint"] footer>span:nth-of-type(3) a:before{content:'';position:absolute;inset:0;z-index:-1;background:var(--ink);transform:translateY(101%);transition:transform .4s}
+[data-theme="sunprint"] footer>span:nth-of-type(3) a:hover{color:var(--paper)}
+[data-theme="sunprint"] footer>span:nth-of-type(3) a:hover:before{transform:none}
+[data-theme="sunprint"] .toast{font-weight:400}
+/* the lucky cat (and the companion) printed in cyanotype blue until you hover */
+[data-theme="sunprint"] :is(.cat,.flat) img,[data-theme="sunprint"] #companion canvas{filter:grayscale(1) sepia(.5) hue-rotate(170deg) saturate(1.3) contrast(.95)}
+@media(max-width:760px){
+  [data-theme="sunprint"] nav a{margin-left:12px;letter-spacing:.12em}
+  [data-theme="sunprint"] nav a:hover{letter-spacing:.12em}
+  [data-theme="sunprint"] nav a[href*="linkedin"]{padding:7px 9px}
+  [data-theme="sunprint"] .hero{min-height:0;padding:112px 16px 150px}
+  [data-theme="sunprint"] .hero:before{width:38vw;height:40%}
+  [data-theme="sunprint"] .hero:after{width:31vw;height:34%}
+  [data-theme="sunprint"] .name p{font-size:11px;letter-spacing:.2em}
+  [data-theme="sunprint"] .tate:first-child{left:72%;top:22%}
+  [data-theme="sunprint"] .tate:last-child{left:16%;top:30%}
+  [data-theme="sunprint"] #about{grid-template-columns:1fr}
+  [data-theme="sunprint"] #about:before{min-height:190px}
+  [data-theme="sunprint"] #about:after{width:100%;bottom:auto;height:190px;background-size:auto 78%;background-position:50% 70%}
+  [data-theme="sunprint"] .facts{padding:36px 16px}
+  [data-theme="sunprint"] .facts li{grid-template-columns:16px 100px minmax(0,1fr);column-gap:8px}
+  [data-theme="sunprint"] .work{padding:170px 18px 26px}
+  [data-theme="sunprint"] .work:before{height:146px}
+  [data-theme="sunprint"] .work .art{width:116px;height:116px;margin-left:-58px}
+}
+@media(max-width:360px){
+  [data-theme="sunprint"] nav a{margin-left:8px;letter-spacing:.06em}
+  [data-theme="sunprint"] nav a:hover{letter-spacing:.06em}
+  [data-theme="sunprint"] nav a[href*="linkedin"]{padding:6px 7px}
+}
+
+/* Sarah's rules in every theme: no eyebrow lines above headings, and no title on the about list */
+[data-theme="mochi"] .tate:first-child,[data-theme="kissaten"] .tate:first-child{display:none}
+[data-theme="mochi"] .hero{grid-template-areas:"name art"}
+[data-theme="kissaten"] .hero{grid-template-areas:"art" "name"}
+[data-theme="kissaten"] .name{margin-top:22px}
+[data-theme="mochi"] #about:before{content:none}
+[data-theme="sunprint"] .facts:before{content:none}
+@media(max-width:760px){[data-theme="mochi"] .hero{grid-template-areas:"name" "art"}}
+
+/* Kissaten: no latte beside the cat; the lucky cat holds the boba instead (companion.js) */
+[data-theme="kissaten"] .cat:before{content:none}
+[data-theme="kissaten"] .cat{margin-right:0}

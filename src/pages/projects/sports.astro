@@ -1,20 +1,254 @@
----
-import "../../styles/global.css";
-import AnimatedBackground from "../../components/AnimatedBackground.astro";
----
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Sarah Whitaker's sports analytics research and large-scale data workflow."/><title>sports analytics research · sarahwhitaker</title></head>
-<body class="night-design project-page"><AnimatedBackground/><main>
-<header class="project-hero"><a class="back-link" href="/">♡ back home</a><p class="project-kicker">DATA & RESEARCH</p><h1>Sports Analytics Research</h1><div class="floral-divider" aria-hidden="true"><span></span><b>✿</b><span></span></div><p class="project-subtitle">data collection · cleaning · automation · validation · R · Python</p></header>
-<article class="data-content">
-<section class="data-hero"><p class="section-label">THE DATA</p><div class="big">2M+</div><h2>records analyzed</h2><p>This project was as much about building a reliable dataset as analyzing one. I worked with public data from multiple sources, automated collection, cleaned and standardized records, matched athletes across datasets, and validated the resulting data before statistical analysis.</p></section>
-<section><p class="section-label">01 · DATA COLLECTION</p><div class="pipeline"><div><b>TFRRS</b><small>race & performance data</small></div><i>→</i><div><b>Athletic.net</b><small>athlete & performance data</small></div><i>→</i><div><b>MileSplit</b><small>public performance data</small></div></div><p>Rather than starting with one ready-made dataset, the workflow combined information from multiple public sources. The data had to be collected, organized, transformed, and checked before analysis.</p></section>
-<section><p class="section-label">02 · AUTOMATION</p><div class="stats"><div><b>10,000+</b><span>public-source data points collected</span></div><div><b>Python</b><span>collection & organization</span></div><div><b>repeatable</b><span>automated workflow</span></div></div><p>Automating collection reduced repetitive manual entry and made large-scale data gathering practical.</p></section>
-<section><p class="section-label">03 · CLEANING & MANIPULATION</p><div class="cards"><div><b>01</b><h3>Standardize</h3><p>Bring records from different sources into a consistent structure.</p></div><div><b>02</b><h3>Clean</h3><p>Handle inconsistent, incomplete, or unusable values.</p></div><div><b>03</b><h3>Transform</h3><p>Create analysis-ready variables and useful tables.</p></div><div><b>04</b><h3>Match</h3><p>Connect records representing the same athletes across sources.</p></div></div></section>
-<section><p class="section-label">04 · MATCHING & VALIDATION</p><div class="validation"><div>raw records <b>→</b> matched athletes <b>→</b> validated records</div><p>Matching records across sources created another layer of quality control. The resulting fields and relationships were checked before the data was used in statistical analysis.</p></div></section>
-<section><p class="section-label">05 · STATISTICAL ANALYSIS</p><p>Once the data had been collected, cleaned, manipulated, matched, and validated, I used RStudio to analyze the large dataset and develop statistical models. The preparation work was foundational because model results are only as reliable as the data going into them.</p><div class="tags"><span>RStudio</span><span>Python</span><span>data validation</span><span>statistical modeling</span><span>data visualization</span></div></section>
-<section><p class="section-label">06 · TAKEAWAY</p><p>This project taught me that large-scale analysis starts long before the first model is fit. Building a useful dataset required automation, careful cleaning, record matching, validation, and repeated checks for unexpected results. Those same habits now shape how I approach quality and reliability in software.</p></section>
-</article><footer><nav class="social-links" aria-label="Social links"><a href="https://github.com/sarahlouisewhitaker" target="_blank" rel="noopener noreferrer">GITHUB</a><span>♡</span><a href="https://www.linkedin.com/in/sarah-louise-whitaker" target="_blank" rel="noopener noreferrer">LINKEDIN</a></nav></footer>
-</main></body></html>
-<style>
-.data-content{max-width:900px;margin:auto;padding:0 1rem 5rem}.data-hero{text-align:center;max-width:720px;margin:0 auto 5rem}.big{font-size:clamp(4rem,11vw,8rem);line-height:.9;color:var(--rose);text-shadow:0 0 25px rgba(239,180,202,.18)}.data-hero h2{font-weight:500}.data-content section{margin-bottom:4.5rem}.data-content section>p:not(.section-label){line-height:1.8;color:rgba(255,245,250,.82)}.pipeline{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:.6rem;align-items:center;margin:1.2rem 0}.pipeline div,.stats div,.cards div,.validation{background:rgba(8,10,22,.58);border:1px solid rgba(239,180,202,.25);border-radius:10px;padding:1.2rem;text-align:center}.pipeline b,.stats b,.cards b{display:block;color:var(--rose)}.pipeline small{display:block;opacity:.7;margin-top:.4rem}.pipeline i{color:var(--rose)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1.2rem 0}.stats b{font-size:1.35rem}.stats span{font-size:.75rem;opacity:.7}.cards{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.2rem}.cards{text-align:left}.cards div{text-align:left}.cards h3{margin:.5rem 0}.cards p{margin:0;line-height:1.6;font-size:.85rem;opacity:.78}.validation{margin-top:1.2rem}.validation>div{color:var(--rose);margin-bottom:1rem}.validation p{margin:0;line-height:1.7;opacity:.8}.tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}.tags span{padding:.55rem .8rem;border:1px solid rgba(239,180,202,.35);border-radius:99px;color:var(--rose);font-size:.72rem;background:rgba(8,10,22,.42)}@media(max-width:650px){.pipeline{grid-template-columns:1fr}.pipeline i{transform:rotate(90deg)}.stats{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
-</style>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sports Analytics Research · Sarah Whitaker</title>
+<meta name="description" content="Sarah Whitaker's sports analytics research on cross country running and its large-scale data workflow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/projects/project.css?v=20261024">
+<script is:inline>document.documentElement.classList.add('js')</script>
+<script is:inline src="/projects/project.js?v=20261024" defer></script>
+<script is:inline type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}</script>
+<script is:inline type="module" src="/projects/run-cat.js?v=20261024f"></script>
+</head>
+<!-- Template: theme-ai sets this project's accent. See README.md for the section map. -->
+<body class="theme-ai">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<header class="top">
+  <a class="seal" href="/" aria-label="Sarah Whitaker, home">SW</a>
+  <span class="crumb">RESEARCH <b>02</b></span>
+  <nav aria-label="Site">
+    <a class="back" href="/"><span aria-hidden="true">←</span>HOME</a>
+    <a class="wide" href="/#work">WORK</a>
+    <a class="wide" href="https://github.com/sarahlouisewhitaker">GITHUB</a>
+    <a class="wide" href="https://www.linkedin.com/in/sarah-louise-whitaker">LINKEDIN</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ============ 1 · HERO ============ -->
+<section class="hero" aria-labelledby="title">
+  <p class="tate" aria-hidden="true">BUILDING A RELIABLE DATASET</p>
+  <div class="hero-c">
+    <div class="hero-art scene-run">
+      <span class="runner">
+        <img class="run-shadow" src="/projects/art/run-cat.png" alt="">
+        <span class="run-cat">
+          <img class="run-under" src="/projects/art/run-cat.png" alt="">
+          <img class="run-hind" src="/projects/art/run-cat.png" alt="">
+          <img class="run-front" src="/projects/art/run-cat.png" alt="">
+          <img class="run-body" src="/projects/art/run-cat.png" alt="A tabby cat running at full speed">
+        </span>
+        <img class="run-lines up" src="/projects/art/run-cat.png" alt="">
+        <img class="run-lines low" src="/projects/art/run-cat.png" alt="">
+      </span>
+      <span class="spark s1" aria-hidden="true">✦</span><span class="spark s2" aria-hidden="true">✦</span><span class="spark s3" aria-hidden="true">✧</span>
+    </div>
+    <h1 id="title">Sports <em>Analytics</em> Research</h1>
+    <div class="rule"></div>
+    <p class="summary">Is cross country a team sport? Public race data from three sources, collected, cleaned, matched, and validated to find out.</p>
+  </div>
+  <p class="tate" aria-hidden="true">PYTHON · RSTUDIO · 2M+</p>
+</section>
+
+<div class="meta">
+  <dl>
+    <div><dt>SPORT</dt><dd>Cross country running</dd></div>
+    <div><dt>METHODS</dt><dd>Automated collection · cleaning · record matching · validation · statistical modeling</dd></div>
+    <div><dt>TOOLS</dt><dd>Python · R (RStudio)</dd></div>
+    <div><dt>DATA</dt><dd>2M+ records analyzed · 3 public sources</dd></div>
+  </dl>
+</div>
+
+<nav class="toc" aria-label="On this page">
+  <a href="#question"><b>01</b>QUESTION</a><a href="#glance"><b>02</b>THE DATA</a><a href="#approach"><b>03</b>APPROACH</a><a href="#findings"><b>04</b>FINDINGS</a><a href="#reflection"><b>05</b>REFLECTION</a>
+</nav>
+
+<!-- ============ 2 · THE PREMISE (centered) ============ -->
+<section class="chapter is-centered" id="question" data-reveal>
+  <h2 class="vh">The question</h2>
+  <div class="paper-card">
+    <p class="question">Is cross country a team sport? Do runners race differently as part of a team than they do unattached?</p>
+    <span class="seal is-stamp" aria-hidden="true">SW</span>
+  </div>
+</section>
+
+<!-- ============ 3 · AT A GLANCE ============ -->
+<section class="chapter" id="glance" aria-labelledby="h-glance">
+  <header class="chapter-head">
+    <span class="no">02</span>
+    <h2 id="h-glance">The data</h2>
+  </header>
+  <div class="chapter-body" data-reveal>
+    <div class="stats has-hero" style="--cols:2">
+      <div class="stat is-hero"><b>2M+</b><span><strong>records analyzed</strong>after collection, cleaning, matching &amp; validation</span></div>
+      <div class="stat"><b>10,000+</b><span>Public-source data points collected</span></div>
+      <div class="stat"><b>3</b><span>Public data sources</span></div>
+    </div>
+    <figure class="viz" data-viz="records">
+      <div class="viz-stage" role="img" aria-label="Unit chart, to scale: 400 dots, each standing for 5,000 records, make 2 million. The project analyzed more than 2 million records."></div>
+      <figcaption><span class="viz-tag">To scale</span>Each dot is 5,000 records<span class="viz-count" data-to="2000000">2,000,000+</span></figcaption>
+    </figure>
+    <p>I worked with public data from multiple sources, automated collection, cleaned and standardized records, matched athletes across datasets, and validated the resulting data before statistical analysis.</p>
+  </div>
+</section>
+
+<!-- ============ 4 · APPROACH ============ -->
+<section class="chapter" id="approach" aria-labelledby="h-approach">
+  <header class="chapter-head">
+    <span class="no">03</span>
+    <h2 id="h-approach">Approach</h2>
+    <img class="rail-art" src="/projects/art/stopwatch.png" alt="" loading="lazy">
+  </header>
+  <div class="chapter-body">
+    <ol class="steps">
+      <li class="step" data-reveal>
+        <span class="step-no" aria-hidden="true">01</span>
+        <div class="step-body">
+          <h3>Gather from three public sources</h3>
+          <div class="trio">
+            <div><h4>TFRRS</h4><p>Race &amp; performance data</p></div>
+            <div><h4>Athletic.net</h4><p>Athlete &amp; performance data</p></div>
+            <div><h4>MileSplit</h4><p>Public performance data</p></div>
+          </div>
+          <figure class="viz" data-viz="merge">
+            <div class="viz-stage" role="img" aria-label="Schematic: records from three public sources, TFRRS, Athletic.net and MileSplit, flow together into one combined dataset."></div>
+            <figcaption><span class="viz-tag">Schematic</span>Three public sources, combined into one dataset</figcaption>
+          </figure>
+          <p>Rather than starting with one ready-made dataset, the workflow combined information from multiple public sources. The data had to be collected, organized, transformed, and checked before analysis.</p>
+        </div>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step-no" aria-hidden="true">02</span>
+        <div class="step-body">
+          <h3>Automate the collection</h3>
+          <p>Python handled collection and organization as a repeatable, automated workflow. Automating it reduced repetitive manual entry and made large-scale data gathering practical.</p>
+          <ul class="chips"><li>Python</li><li>Collection &amp; organization</li><li>Repeatable workflow</li><li>10,000+ data points</li></ul>
+        </div>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step-no" aria-hidden="true">03</span>
+        <div class="step-body">
+          <h3>Clean, shape, and connect</h3>
+          <div class="trio n4">
+            <div><h4>Standardize</h4><p>Bring records from different sources into a consistent structure.</p></div>
+            <div><h4>Clean</h4><p>Handle inconsistent, incomplete, or unusable values.</p></div>
+            <div><h4>Transform</h4><p>Create analysis-ready variables and useful tables.</p></div>
+            <div><h4>Match</h4><p>Connect records representing the same athletes across sources.</p></div>
+          </div>
+          <figure class="viz" data-viz="clean">
+            <div class="viz-stage" role="img" aria-label="Schematic: misaligned records with inconsistent formats, a missing value and an unusable value are lined up and cleaned into one table, a new variable is added to every row, and records of the same athlete are linked."></div>
+            <figcaption><span class="viz-tag">Schematic</span>The four steps above, on a few made-up records</figcaption>
+          </figure>
+        </div>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step-no" aria-hidden="true">04</span>
+        <div class="step-body">
+          <h3>Check before trusting</h3>
+          <ol class="flow">
+            <li>Raw records</li><li>Matched athletes</li><li>Validated records</li>
+          </ol>
+          <figure class="viz" data-viz="match">
+            <div class="viz-stage" role="img" aria-label="Schematic: records from different sources, drawn as circles, squares and diamonds, link to the athlete they describe; each athlete's matched records are then checked."></div>
+            <figcaption><span class="viz-tag">Schematic</span>Records from different sources link to one athlete, then get checked</figcaption>
+          </figure>
+          <p>Matching records across sources created another layer of quality control. The resulting fields and relationships were checked before the data was used in statistical analysis.</p>
+        </div>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step-no" aria-hidden="true">05</span>
+        <div class="step-body">
+          <h3>Model the large dataset</h3>
+          <p>Once the data had been collected, cleaned, manipulated, matched, and validated, I used RStudio to analyze the large dataset and develop statistical models.</p>
+          <ul class="chips"><li>RStudio</li><li>Python</li><li>Data validation</li><li>Statistical modeling</li><li>Data visualization</li></ul>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 5 · FINDINGS ============ -->
+<section class="chapter" id="findings" aria-labelledby="h-findings">
+  <header class="chapter-head">
+    <span class="no">04</span>
+    <h2 id="h-findings">Findings</h2>
+    <img class="rail-art" src="/projects/art/computer-cat.png" alt="" loading="lazy">
+  </header>
+  <div class="chapter-body">
+    <p class="pull" data-reveal>Yes, it is a team sport, but how much depends on where you stand within the team.</p>
+    <p data-reveal>A cross country team races seven runners, and only the top five count toward the team score. Comparing each runner's races on a team with their races unattached:</p>
+    <figure class="lineup" data-reveal>
+      <div class="lu-score" aria-hidden="true"><span>scoring five</span></div>
+      <div class="lu-groups">
+        <div class="lu-group is-top">
+          <div class="lu-dots" aria-hidden="true"><i>1</i><i>2</i></div>
+          <b>No significant difference</b>
+          <p>Runners who consistently placed first and second on their team performed about the same on a team as unattached.</p>
+        </div>
+        <div class="lu-group is-mid">
+          <div class="lu-dots" aria-hidden="true"><i>3</i><i>4</i><i>5</i></div>
+          <b>The biggest difference</b>
+          <p>The third, fourth and fifth runners saw the biggest difference between racing on a team and racing unattached.</p>
+        </div>
+        <div class="lu-group is-bench">
+          <div class="lu-dots" aria-hidden="true"><i>6</i><i>7</i></div>
+          <b>Don't score</b>
+          <p>The sixth and seventh runners race, but their places don't count toward the team score.</p>
+        </div>
+      </div>
+      <figcaption><span class="viz-tag">Schematic</span>A seven-runner team, by finishing position on the team</figcaption>
+    </figure>
+    <aside class="callout" data-reveal>
+      <span aria-hidden="true">✦</span>
+      <p><strong>Model results are only as reliable as the data going into them.</strong>That is why the preparation work, from collection through validation, was foundational to this project.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 7 · REFLECTION ============ -->
+<section class="chapter" id="reflection" aria-labelledby="h-reflection">
+  <header class="chapter-head">
+    <span class="no">05</span>
+    <h2 id="h-reflection">Reflection</h2>
+  </header>
+  <div class="chapter-body">
+    <p class="pull" data-reveal>Large-scale analysis starts long before the first model is fit.</p>
+    <p data-reveal>Building a useful dataset required automation, careful cleaning, record matching, validation, and repeated checks for unexpected results. The research hit many roadblocks along the way, and reaching an answer meant working through each one.</p>
+    <p class="lede" data-reveal>Those same habits now shape how I approach quality and reliability in software.</p>
+  </div>
+</section>
+
+<!-- ============ 8 · CONTINUE ============ -->
+<nav class="continue" aria-label="More research">
+  <h2 class="vh">Keep reading</h2>
+  <a class="next theme-moss" href="/projects/studio-ghibli-revenue-analysis/">
+    <div>
+      <h3>Studio Ghibli &amp; Anime Similarity</h3>
+      <p>From the Miyazaki effect to a way of measuring similarity across anime, with Bayesian analysis and Gower distance in R.</p>
+      <span class="go">READ RESEARCH 01 <span aria-hidden="true">→</span></span>
+    </div>
+    <span class="art scene-tv" aria-hidden="true"><span class="tv"><img src="/projects/art/retro-tv.png" alt="" loading="lazy"></span><img class="viewer" src="/projects/art/cat-back.png" alt="" loading="lazy"></span>
+  </a>
+  <a class="home" href="/">
+    <span class="cat" aria-hidden="true"><img class="body" src="/projects/art/maneki-neko.png" alt=""><img class="paw" src="/projects/art/maneki-neko.png" alt=""><span class="spark s1">✦</span><span class="spark s2">✦</span><span class="spark s3">✧</span></span>
+    <span>BACK HOME</span>
+  </a>
+</nav>
+
+</main>
+
+<footer>
+  <span>© 2026 SARAH WHITAKER</span>
+  <a class="seal small" href="/" aria-label="Home">SW</a>
+  <span><a href="https://github.com/sarahlouisewhitaker">GITHUB</a> · <a href="https://www.linkedin.com/in/sarah-louise-whitaker">LINKEDIN</a></span>
+  <p class="credits">Illustrations by <a href="https://www.irasutoya.com/" lang="ja">いらすとや</a></p>
+</footer>
+</body>
+</html>
