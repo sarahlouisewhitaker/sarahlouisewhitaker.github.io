@@ -295,8 +295,9 @@ function frame(now) {
   // reveal only after the first placement, so it never flashes at the top-left
   if (!document.body.classList.contains('companion-on')) document.body.classList.add('companion-on');
 
-  // in the coffee-house theme the cat starts with the boba instead of its coin
-  const want = propForScroll();
+  // in the header it always holds its coin, whatever is on screen or hovered; in the coffee-house
+  // theme it holds the boba instead
+  const want = r.t < 0.05 ? 'coin' : propForScroll();
   show(want === 'coin' && document.documentElement.dataset.theme === 'kissaten' ? 'boba' : want);
   holder.dataset.prop = current;
   stepSwap(now);
